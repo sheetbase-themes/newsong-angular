@@ -1,0 +1,40 @@
+{
+	"driveFolder": "1jqNrfx7LIYMvuCPk1B1qs4qZjsct0svy",
+	"configs": {
+		"backend": {
+			"apiKey": "DfyYHKdjUGnmOFH7hQVdfrbhCGJs2WBJ",
+			"databaseId": "1WPJ1vDC6mm4GJXsyTpczk9NP7AS6eDgqhfnHp6HviwA"
+		},
+		"frontend": {
+			"backendUrl": "https://script.google.com/macros/s/AKfycbyfT_GmHw3-sk6DSVEpyPeX5S76JrkOJNSE6csvZvC4l9lkw3T9tScs4dYo3d_EY59Sbg/exec",
+			"apiKey": "DfyYHKdjUGnmOFH7hQVdfrbhCGJs2WBJ",
+			"databaseId": "1WPJ1vDC6mm4GJXsyTpczk9NP7AS6eDgqhfnHp6HviwA",
+			"databaseGids": {
+				"categories": "101",
+				"tags": "102",
+				"pages": "103",
+				"posts": "104"
+			}
+		}
+	},
+	"configMaps": {
+		"backend": ["apiKey", "databaseId"],
+		"frontend": ["apiKey", "backendUrl", "databaseId", "databaseGids"]
+	},
+	"urlMaps": {
+		"databaseId": ["db", "https://docs.google.com/spreadsheets/d/", "/edit"]
+	},
+	"setupHooks": {
+		"apiKey": ["Generate the API key", "randomStr"],
+		"databaseId": ["Create the database", "createDatabase"]
+	},
+	"models": ["categories", "tags", "pages", "posts"],
+	"deployment": {
+		"provider": "github",
+		"url": "https://sheetbase-themes.github.io/newsong-angular",
+		"stagingDir": "../preview",
+		"destination": {
+			"gitUrl": "https://github.com/sheetbase-themes/newsong-angular.git"
+		}
+	}
+}
