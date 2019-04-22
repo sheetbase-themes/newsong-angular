@@ -18,6 +18,17 @@
       "es2018",
       "dom"
     ],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "newsong": [
+        "dist/newsong"
+      ],
+      "@sheetbase/newsong-angular": [
+        "dist/newsong"
+      ],
+      "newsong/*": [
+        "dist/newsong/*"
+      ]
+    }
   }
 }
