@@ -1,12 +1,14 @@
 import { sheetbase } from '@sheetbase/server';
 import { middleware as apiKeyMiddleware } from '@sheetbase/api-key';
 import { sheets } from '@sheetbase/sheets';
+import { gmail } from '@sheetbase/gmail';
 
 import { SHEETBASE_CONFIG } from './sheetbase.config';
+import { MessageTemplating } from './templates/message';
 import appRoutes from './routes/index';
 
 // configs
-const { apiKey, databaseId } = SHEETBASE_CONFIG;
+const { apiKey, databaseId, emailPrefix } = SHEETBASE_CONFIG;
 
 /**
  * modules
@@ -28,6 +30,16 @@ const Sheets = sheets({
     },
 });
 
+const Gmail = gmail({
+    prefix: emailPrefix,
+    categories: {
+        message: 'Messages',
+    },
+    templates: {
+        message: MessageTemplating,
+    },
+});
+
 /**
  * routes
  */
@@ -42,4 +54,4 @@ Sheets
 appRoutes();
 
 // export for use elsewhere
-export { Sheetbase, ApiKeyMiddleware, Sheets };
+export { Sheetbase, ApiKeyMiddleware, Sheets, Gmail };

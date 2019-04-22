@@ -1,15 +1,30 @@
-import { Sheetbase } from '../index';
+import { Sheetbase, ApiKeyMiddleware, Gmail } from '../index';
 
 export default () => {
 
     const router = Sheetbase.Router;
 
-    router.get('/', (req, res) => {
-        return res.html(`<h1>Sheetbase Backend</h1>`);
-    });
+    // add contact message
+    router.put('/app/message', ApiKeyMiddleware,
+    (req, res) => {
+        // input message
+        const { message } = req.body;
+        const { name, email, message: msg } = message;
 
-    router.post('/', (req, res) => {
-        return res.success({ title: 'Sheetbase Backend' });
+        if (!email || !msg) {
+            return res.error('app/no-data');
+        }
+
+        // send email
+        try {
+            Gmail.send({
+                recipient: email,
+                subject: 'Contact message' + (!!name ? (' from ' + name) : ''),
+            }, 'message', { message });
+            return res.success({ acknowledge: true });
+        } catch (error) {
+            return res.error('app/email-not-sent');
+        }
     });
 
 };
