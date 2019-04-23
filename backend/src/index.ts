@@ -27,6 +27,7 @@ const Sheets = sheets({
         tags: { '.read': true },
         pages: { '.read': true },
         posts: { '.read': true },
+        products: { '.read': true },
     },
 });
 

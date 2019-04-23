@@ -10,6 +10,7 @@ export const SHEETBASE_CONFIG = {
       "categories": "101",
       "tags": "102",
       "pages": "103",
-      "posts": "104"
+      "posts": "104",
+      "products": "107"
    }
 }

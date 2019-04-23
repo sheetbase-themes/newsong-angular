@@ -14,7 +14,8 @@
 				"categories": "101",
 				"tags": "102",
 				"pages": "103",
-				"posts": "104"
+				"posts": "104",
+				"products": "107"
 			}
 		}
 	},
@@ -29,7 +30,7 @@
 		"apiKey": ["Generate the API key", "randomStr"],
 		"databaseId": ["Create the database", "createDatabase"]
 	},
-	"models": ["categories", "tags", "pages", "posts"],
+	"models": ["categories", "tags", "pages", "posts", "products"],
 	"deployment": {
 		"provider": "github",
 		"url": "https://sheetbase-themes.github.io/newsong-angular",

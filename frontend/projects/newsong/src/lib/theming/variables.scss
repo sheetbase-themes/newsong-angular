@@ -1,0 +1,52 @@
+$types: (
+    head: #{'IBM Plex Serif', serif},
+    body: #{'IBM Plex Sans', sans-serif},
+);
+
+$colors: (
+    primary: #3880ff,
+    secondary: #0cd1e8,
+    tertiary: #7044ff, // info
+    success: #10dc60,
+    warning: #ffce00,
+    danger: #f04141,
+    dark: #222428,
+    medium: #989aa2, // muted
+    light: #f4f5f8,
+);
+
+$gradients: (
+    primary: linear-gradient(
+        120deg, map-get($colors, primary), map-get($colors, secondary)
+    ),
+    secondary: linear-gradient(
+        120deg, map-get($colors, secondary), map-get($colors, tertiary)
+    ),
+    tertiary: linear-gradient(
+        120deg, map-get($colors, tertiary), lighten(map-get($colors, tertiary), 30)
+    ),
+    success: linear-gradient(
+        120deg, map-get($colors, success), lighten(map-get($colors, success), 30)
+    ),
+    warning: linear-gradient(
+        120deg, map-get($colors, warning), darken(map-get($colors, warning), 30)
+    ),
+    danger: linear-gradient(
+        120deg, map-get($colors, danger), darken(map-get($colors, danger), 30)
+    ),
+    dark: linear-gradient(
+        120deg, map-get($colors, dark), map-get($colors, medium)
+    ),
+    medium: linear-gradient(
+        120deg, map-get($colors, medium), map-get($colors, light)
+    ),
+    light: linear-gradient(
+        120deg, map-get($colors, light), map-get($colors, medium)
+    ),
+);
+
+$sizes: (
+    base: 16px,
+    radius: 16px,
+    border: 3px,
+);
