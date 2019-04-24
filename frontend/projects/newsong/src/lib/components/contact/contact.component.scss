@@ -1,0 +1,73 @@
+@import '../../theming/index.scss';
+
+.contact {
+
+  form {
+    @include form;
+
+    input, textarea {
+      background: #FFF;
+      padding: .75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .body {
+
+      .left {
+
+      }
+
+      .right {
+
+        textarea {
+          height: 15rem;
+        }
+      }
+
+    }
+
+    .foot {
+
+      .info {
+
+        p {
+          color: app-color('medium');
+        }
+      }
+
+      .actions {
+        display: flex;
+        padding: 1rem 0;
+  
+        .left {
+          flex-grow: 1;
+  
+          a {
+            display: inline-block;
+            text-decoration: none;
+            margin-right: 1rem;
+            opacity: .5;
+
+            &:hover {
+              opacity: .7;
+            }
+  
+            img {
+              width: 2rem;
+              height: 2rem;
+            }
+          }
+        }
+  
+        .right {
+          text-align: center;
+  
+          button {
+            @include button('primary');
+          }
+        }
+      }
+    }
+  }
+  
+}

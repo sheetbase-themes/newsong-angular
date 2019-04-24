@@ -6,11 +6,15 @@ const routes: Routes = [
   { path: '', loadChildren: './pages/home/home.module#HomePageModule', pathMatch: 'full' },
   { path: 'contact', loadChildren: './pages/contact/contact.module#ContactPageModule' },
   { path: 'videos', loadChildren: './pages/videos/videos.module#VideosPageModule' },
-  { path: 'video', loadChildren: './pages/video/video.module#VideoPageModule' },
+  { path: 'video/:videoKey', loadChildren: './pages/video/video.module#VideoPageModule' },
   { path: 'songs', loadChildren: './pages/songs/songs.module#SongsPageModule' },
-  { path: 'song', loadChildren: './pages/song/song.module#SongPageModule' },
+  { path: 'song/:songKey', loadChildren: './pages/song/song.module#SongPageModule' },
   { path: 'posts', loadChildren: './pages/posts/posts.module#PostsPageModule' },
-  { path: 'post', loadChildren: './pages/post/post.module#PostPageModule' },
+  { path: 'post/:postKey', loadChildren: './pages/post/post.module#PostPageModule' },
+  {
+    path: '**',
+    loadChildren: './pages/not-found/not-found.module#NotFoundPageModule',
+  },
 ];
 
 @NgModule({

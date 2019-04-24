@@ -6,7 +6,6 @@ export const APP_OPTIONS = {
   email: 'contact@sheetbase.dev',
   facebook: 'https://facebook.com/sheetbase',
   twitter: 'https://twitter.com/sheetbase_dev',
-  github: 'https://github.com/sheetbase',
   locale: 'en-US',
 
   // currency config

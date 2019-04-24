@@ -1,0 +1,44 @@
+<div class="contact">
+
+  <form [formGroup]="contactFormGroup" (ngSubmit)="sendMessageEmit()" #contactForm="ngForm">
+
+    <div class="body">
+
+      <div class="left">
+
+        <label class="required">
+          <input type="name" formControlName="name" placeholder="Your name">
+        </label>
+  
+        <label class="required">
+          <input type="email" formControlName="email" placeholder="Your email">
+        </label>  
+  
+      </div>
+  
+      <div class="right">
+  
+        <label class="required">
+          <textarea formControlName="message" placeholder="Message detail ..."></textarea>
+        </label>
+  
+      </div>
+
+    </div>
+    
+
+    <div class="foot">
+
+      <div class="info">
+        <p>Your information will be used for contacting purpose only!</p>
+      </div>
+
+      <div class="actions">
+        <button type="submit" [disabled]="!contactForm.form.valid || lockdown">Send message</button>
+      </div>
+
+    </div>
+
+  </form>
+
+</div>
