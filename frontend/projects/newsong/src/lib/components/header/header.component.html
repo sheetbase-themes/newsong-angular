@@ -1,51 +1,46 @@
 <header>
 
-  <div class="top">
+  <nav>
 
     <div class="left">
+
       <div class="toggler">
-        <button (click)="toggle()"><img
-          [src]="nav.canGoBack() ? 'https://img.icons8.com/metro/48/000000/back.png' : 'https://img.icons8.com/metro/48/000000/menu.png'"
-        ></button>
+        <a href="#" (click)="toggle(); false;"><img
+          [src]="nav.canGoBack() ? 'https://img.icons8.com/metro/32/cccccc/back.png' : 'https://img.icons8.com/metro/32/cccccc/menu.png'"
+        ></a>
       </div>
+
     </div>
 
     <div class="middle">
-      <img src="https://img.icons8.com/metro/32/3880ff/lyre.png">
+      <h1 [innerHtml]="name" (click)="goHome.emit()"></h1>
     </div>
 
     <div class="right">
-      <ul>
-        <li *ngFor="let item of links"><a [href]="item.href" (click)="item.handler(); showMenu=false; false;">{{ item.text }}</a></li>
-      </ul>
-      <button class="cta">Make donation</button>
-    </div>
 
-  </div>
-
-  <div class="bottom">
-
-    <ul class="tabs">
-      <li *ngFor="let item of links"><a [href]="item.href" (click)="item.handler(); showMenu=false; false;">{{ item.text }}</a></li>
-    </ul>
-
-    <div class="menu" [ngClass]="{ active: showMenu }">
-
-      <ul class="body">
-        <li *ngFor="let item of links"><a [href]="item.href" (click)="item.handler(); showMenu=false; false;">{{ item.text }}</a></li>
-      </ul>
-
-      <div class="foot">
-        <ul class="socials">
-          <li *ngFor="let item of socials">
-            <a [href]="item.href" [class]="item.class"><img [src]="item.icon"></a>
-          </li>
-        </ul>
+      <div class="menu" [ngClass]="{ active: showMenu }">
+        <div class="backdrop" (click)="showMenu=false"></div>
+        <div class="main">
+          <div class="head"><span>Menu</span></div>
+          <ul class="body">
+            <li *ngFor="let item of links"><a [href]="item.href" (click)="item.handler(); showMenu=false; false;">{{ item.text }}</a></li>
+          </ul>
+          <div class="foot">
+            <ul class="socials">
+              <li *ngFor="let item of socials">
+                <a [href]="item.href" [class]="item.class"><img [src]="item.icon"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-
+      
+      <div class="buttons">
+        <button class="cta">Donate</button>
+      </div>
     </div>
 
-  </div>
+  </nav>
 
 </header>
 

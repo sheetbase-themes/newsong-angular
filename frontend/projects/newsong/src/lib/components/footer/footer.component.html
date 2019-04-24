@@ -1,53 +1,21 @@
 <footer>
 
   <div class="left">
-
-    <div class="title">Contact us</div>
-
-    <div class="content">
-      <newsong-contact></newsong-contact>
+    <div class="attribution" *ngIf="!!attribution">
+      <p>Powered by <a href="https://sheetbase.dev" target="_blank">Sheetbase</a>.</p>
     </div>
-
+    
+    <ul class="socials">
+      <li *ngFor="let item of socials">
+        <a [href]="item.href" [class]="item.class"><img [src]="item.icon"></a>
+      </li>
+    </ul>
   </div>
 
   <div class="right">
-
-    <div class="about">
-
-      <div class="title">About us</div>
-
-      <div class="content">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis saepe, assumenda accusantium nobis adipisci deleniti doloribus voluptas eligendi quos! Libero eligendi dolor unde repudiandae aut nisi inventore. Delectus, recusandae fuga.</p>
-      </div>
-
-    </div>
-
-    <div class="socials">
-
-      <div class="title">Follow us</div>
-
-      <ul class="content">
-        <li *ngFor="let item of socials">
-          <a [href]="item.href" [class]="item.class"><img [src]="item.icon"></a>
-        </li>
-      </ul>
-
-    </div>
-
-    <div class="links">
-
-      <div class="title">Links</div>
-
-      <ul class="content">
-        <li *ngFor="let item of links"><a [href]="item.href" (click)="item.handler();false;">{{ item.text }}</a></li>
-      </ul>
-
-    </div>
-
-    <div class="attribution" *ngIf="!!attribution">
-      Power by <a href="https://sheetbase.dev">Sheetbase</a>.
-    </div>
-
+    <ul class="links">
+      <li *ngFor="let item of links"><a [href]="item.href" (click)="item.handler();false;">{{ item.text }}</a></li>
+    </ul>
   </div>
-
+    
 </footer>

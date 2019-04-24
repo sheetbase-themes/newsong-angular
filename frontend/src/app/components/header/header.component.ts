@@ -50,17 +50,17 @@ export class HeaderComponent implements OnInit {
       const { email, facebook, twitter } = this.appService.options;
       this.socials = [
         {
-          icon: 'https://unpkg.com/@mdi/svg@3.3.92/svg/email.svg',
+          icon: 'https://img.icons8.com/material-rounded/32/777777/new-post.png',
           class: 'email',
           href: 'mailto:' + email,
         },
         {
-          icon: 'https://unpkg.com/@mdi/svg@3.3.92/svg/facebook.svg',
+          icon: 'https://img.icons8.com/android/32/777777/facebook.png',
           class: 'facebook',
           href: facebook,
         },
         {
-          icon: 'https://unpkg.com/@mdi/svg@3.3.92/svg/twitter.svg',
+          icon: 'https://img.icons8.com/android/32/777777/twitter.png',
           class: 'twitter',
           href: twitter,
         },

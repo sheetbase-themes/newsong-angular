@@ -1,5 +1,56 @@
 @import '../../theming/index.scss';
 
 footer {
+  border-top: #{app-size('border')} solid #{app-color('light')};
+  display: flex;
+  padding: 1.5rem 1rem 1rem;
+
+  .left {
+    flex-grow: 1;
+
+    .attribution {
+
+      p {
+        margin: 0 0 1rem .5rem;
+      }
+    }
+
+    .socials {
+      @include list-inline;
+
+      li {
+
+        a {
+          @include button-icon($style: 'clear');
+          opacity: .5;
+          margin: 0;
+          
+          &:hover {
+            opacity: .7;
+          }
+        }
   
+        &:first-child a {
+          margin-left: 0;
+        }
+        &:last-child a {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .right {
+    
+    .links {
+      @include list-inline;
+      text-align: right;
+
+      a {
+        color: app-color('dark');
+        margin: 0 .5rem;
+      }
+    }
+  }
+
 }
