@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { PlayerService } from '../../services/player/player.service';
+
 @Component({
   selector: 'newsong-player',
   templateUrl: './player.component.html',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayerComponent implements OnInit {
 
-  constructor() { }
+  showDetail = false;
+  tab = 'content';
+
+  constructor(
+    public player: PlayerService,
+  ) { }
 
   ngOnInit() {}
 

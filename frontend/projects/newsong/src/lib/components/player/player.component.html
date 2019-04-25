@@ -1,13 +1,92 @@
 <div class="player">
 
-  <div class="thumbnail">
+  <main class="body">
+
+    <div class="item" (click)="tab='content'; showDetail=true;">
+
+      <div class="thumbnail">
+        <div class="disc" [ngClass]="{ 'active': player.playing }">
+          <img [src]="player.currentItem().thumbnail">
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="title" [innerHtml]="player.currentItem().title"></div>
+        <div class="info">{{ player.currentItem().title }}</div>
+      </div>
+  
+    </div>
+  
+    <div class="controls">
+
+      <div class="seeker">
+
+        <div class="seekbar">
+          <div class="bar" (click)="player.seek($event)">
+            <div class="activated" [style.width]="player.seekBarValue + '%'"></div>
+            <div class="handler" [style.left]="player.seekBarValue+ '%'"></div>
+          </div>
+        </div>
+
+        <div class="timing">
+          <div class="begin">{{ player.formatTime(player.time) }}</div>
+          <div class="end">{{ player.formatTime(player.duration) }}</div>
+        </div>
+
+      </div>
+
+      <div class="meta">
+        <button class="list" (click)="tab='playlist'; showDetail=true;">=</button>
+      </div>
+
+      <div class="buttons">
+        <button class="prev"
+          [disabled]="!player.prevItem()"
+          (click)="player.togglePrev()"
+        ><</button>
+        <button class="play"
+          [disabled]="!player.available"
+          (click)="player.togglePlay()"
+        >{{ player.playing ? 'Pause' : 'Play' }}</button>
+        <button class="next"
+          [disabled]="!player.nextItem()"
+          (click)="player.toggleNext()"
+        >></button>
+      </div>
+  
+    </div>
+
+  </main>
+
+  <div class="modal" [ngClass]="{ 'show': showDetail }">
+
+    <div class="head">
+
+      <div class="left">
+        <button (click)="tab='content'">Content</button>
+        <button (click)="tab='playlist'">Playlist</button>
+      </div>
+
+      <div class="right">
+        <button (click)="showDetail=false">X</button>
+      </div>
+
+    </div>
+
+    <div class="body">
+
+      <div class="content" *ngIf="tab==='content'">
+        <h1>Content</h1>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos sint tempora qui. Non laboriosam ea est rem optio eligendi. At rem cumque cupiditate corrupti nesciunt ipsum iste explicabo sed obcaecati.
+      </div>
+
+      <div class="playlist" *ngIf="tab==='playlist'">
+        <h1>Playlist</h1>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quas, eius labore excepturi rem cumque! Nulla impedit explicabo reiciendis cum maxime quam temporibus exercitationem voluptatem autem fugit, modi assumenda at?
+      </div>
+
+    </div>
 
   </div>
-
-  <div class="controls">
-
-  </div>
-
-  <div class="more"></div>
 
 </div>

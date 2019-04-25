@@ -1,0 +1,159 @@
+@import '../../theming/index.scss';
+
+.player {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;  
+  border-top: #{app-size('border')} solid #{app-color('light')};
+  background: #FFF;
+  
+  .body {
+    display: flex;
+    
+    .item {
+      display: flex;
+      
+      .thumbnail {
+        width: 3rem;
+        height: 3rem;
+        
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+
+        .disc {
+          border-radius: 100%;
+          overflow: hidden;
+          position: relative;
+
+          &::before {
+            display: block;
+            position: absolute;
+            content: '';
+            width: 1rem;
+            height: 1rem;
+            top: 1rem;
+            left: 1rem;
+            background: #FFF;
+            border-radius: 100%;
+          }
+
+          &::after {
+            display: block;
+            position: absolute;
+            content: '';
+            width: .3rem;
+            height: .3rem;
+            top: 1.3rem;
+            left: 1.3rem;
+            background: #333;
+            border-radius: 100%;
+          }
+
+          &.active {
+            @keyframes spin {
+              from {
+                transform:rotate(360deg);
+              }
+              to {
+                transform:rotate(0deg);
+              }
+            }
+            animation-name: spin;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+          }
+
+        }
+
+      }
+
+      .content {
+        display: none;
+      }
+    }
+
+    .controls {
+      flex-grow: 1;
+      display: flex;
+
+      .seeker {
+        flex-grow: 1;
+
+        .seekbar {
+          height: 5px;
+
+          .bar {
+            transition: .2s all ease;
+            cursor: pointer;
+            position: relative;
+            width: 100%;
+            height: 3px;
+            background: app-color('light');
+            overflow: visible;
+            border-radius: app-size('radius');
+            
+            .activated {
+              transition: .2s all ease;
+              width: 0%;
+              height: 3px;
+              background: app-color('dark');
+              border-radius: app-size('radius');
+            }
+
+            .handler {
+              position: absolute;
+              top: -.45rem;
+              left: -.5rem;
+              width: 1rem;
+              height: 1rem;
+              border-radius: 100%;
+              background: app-color('medium');
+            }
+
+            &:hover {
+              height: 5px;
+              
+              .activated {
+                height: 5px;
+              }
+            }
+          }
+
+        }
+
+        .timing {
+          display: flex;
+
+          .begin {
+            flex-grow: 1;
+          }
+
+          .end {
+            text-align: right;
+          }
+        }
+
+      }
+
+      .meta {
+
+      }
+
+      .buttons {
+
+      }
+
+    }
+
+  }
+
+  .modal {
+
+  }
+
+}
