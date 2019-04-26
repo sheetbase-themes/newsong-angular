@@ -18,11 +18,12 @@ export class PlayerService {
   itemIndex = 0;
 
   available = false;
-  playing = false;
 
   duration = 0;
   time = 0;
   seekBarValue = 0;
+
+  nextItemQueued = false;
 
   constructor() {
     this.init();
@@ -35,9 +36,7 @@ export class PlayerService {
     });
     // init items
     this.items.push({
-      $key: '__newsong__',
       title: 'Newsong',
-      thumbnail: 'https://img.icons8.com/dusk/128/000000/music.png',
       contentSource: 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA',
     });
   }
@@ -53,23 +52,40 @@ export class PlayerService {
           this.audio.play();
         },
         onplay: () => {
-          this.playing = true;
           this.duration = this.audio.duration();
-          return this.step();
+          return this.playingStep();
         },
-        onpause: () => this.playing = false,
-        onend: () => this.playing = false,
       });
     }, 1000);
   }
 
-  private step() {
+  private playingStep() {
+    // update timing
     this.time = this.audio.seek() as number;
-    this.seekBarValue = Math.ceil((this.time * 100) / this.duration);
+    this.seekBarValue = !!this.duration ? Math.ceil((this.time * 100) / this.duration) : 0;
+    // autoplay next song
+    if (
+      !this.nextItemQueued &&
+      this.time > (this.duration - 5)
+    ) {
+      this.nextItemQueued = true;
+      const nextIndex = !!this.nextItem() ? this.itemIndex + 1 : 0;
+      // notify
+      const item = this.items[nextIndex];
+      console.log('Next song ...', item);
+      // play next song after 7s
+      setTimeout(() => {
+        this.play(this.items, nextIndex, this.bundle);
+      }, 7000);
+      // reset checker after 10s
+      setTimeout(() => {
+        this.nextItemQueued = false;
+      }, 10000);
+    }
     // continue steping
     if (this.audio.playing()) {
       setTimeout(() => {
-        this.step();
+        this.playingStep();
       }, 1000);
     }
   }
@@ -86,6 +102,10 @@ export class PlayerService {
     return this.items[this.itemIndex + 1];
   }
 
+  playing() {
+    return !!this.audio ? this.audio.playing() : false;
+  }
+
   play(items: Song[], itemIndex = 0, bundle?: Bundle) {
     this.bundle = bundle;
     this.items = items;
@@ -100,7 +120,6 @@ export class PlayerService {
       this.audio.fade(0, 1, 300);
       this.audio.play();
     } else {
-      this.playing = true; // fix delay cause by setTimeout
       this.audio.fade(1, 0, 300);
       setTimeout(() => {
         this.audio.pause();

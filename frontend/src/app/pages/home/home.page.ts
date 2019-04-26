@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Post } from '@sheetbase/models';
-import { AppService, NavService, DataService } from '@sheetbase/angular';
+import {
+  Post as Song,
+  Post as Bundle,
+} from '@sheetbase/models';
+import { AppService, NavService, DataService, DatabaseService } from '@sheetbase/angular';
 
 import { PlayerService } from 'newsong';
 
@@ -12,25 +15,43 @@ import { PlayerService } from 'newsong';
 })
 export class HomePage implements OnInit {
 
+  songs: Song[];
+  albums: Bundle[];
+  playlists: Bundle[];
+
   constructor(
     private dataService: DataService,
+    private databaseService: DatabaseService,
     public appService: AppService,
     public nav: NavService,
     public player: PlayerService,
   ) {}
 
   ngOnInit() {
+    // songs
+    this.databaseService.items<Song>('songs')
+    .subscribe(songs => {
+      console.log(songs);
+      this.songs = songs;
+    });
+    // albums
+    this.databaseService.items<Bundle>('bundles', { type: 'album' })
+    .subscribe(albums => {
+      console.log(albums);
+      this.albums = albums;
+    });
+    // playlists
+    this.databaseService.items<Bundle>('bundles', { type: 'playlist' })
+    .subscribe(playlists => {
+      console.log(playlists);
+      this.playlists = playlists;
+    });
     // set meta
     this.nav.setMeta();
   }
 
   playAudio() {
-    this.player.play([{
-      $key: 'test',
-      title: 'Lorem ipsum dolat init',
-      thumbnail: 'https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      contentSource: 'https://previews.customer.envatousercontent.com/files/145229456/preview.mp3',
-    }]);
+    this.player.play(this.songs);
   }
 
 }
