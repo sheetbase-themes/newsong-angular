@@ -22,10 +22,10 @@
       <div class="seeker">
 
         <div class="seekbar">
-          <div class="bar" (click)="player.seek($event)">
-            <div class="activated" [style.width]="player.seekBarValue + '%'"></div>
-            <div class="handler" [style.left]="player.seekBarValue+ '%'"></div>
-          </div>
+          <input type="range" min="0" max="100" step="1"
+            [(ngModel)]="player.seekBarValue"
+            (change)="player.seek()"
+          />
         </div>
 
         <div class="timing">

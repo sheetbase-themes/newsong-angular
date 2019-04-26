@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { PlayerComponent } from './player.component';
 
@@ -9,6 +10,7 @@ import { PlayerComponent } from './player.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
   ],
   exports: [
     PlayerComponent,

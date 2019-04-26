@@ -25,21 +25,21 @@ export class PlayerService {
   seekBarValue = 0;
 
   constructor() {
+    this.init();
+  }
+
+  private init() {
     // init audio
     this.audio = new Howl({
       src: ['data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA'],
-      onload: () => this.available = true,
     });
     // init items
-    this.itemIndex = 0;
-    this.items = [
-      {
-        $key: '__newsong__',
-        title: 'Newsong',
-        thumbnail: 'https://img.icons8.com/dusk/128/000000/music.png',
-        contentSource: 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA',
-      },
-    ];
+    this.items.push({
+      $key: '__newsong__',
+      title: 'Newsong',
+      thumbnail: 'https://img.icons8.com/dusk/128/000000/music.png',
+      contentSource: 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA',
+    });
   }
 
   private playAudio(urls: string[]) {
@@ -63,6 +63,17 @@ export class PlayerService {
     }, 1000);
   }
 
+  private step() {
+    this.time = this.audio.seek() as number;
+    this.seekBarValue = Math.ceil((this.time * 100) / this.duration);
+    // continue steping
+    if (this.audio.playing()) {
+      setTimeout(() => {
+        this.step();
+      }, 1000);
+    }
+  }
+
   currentItem(): any {
     return this.items[this.itemIndex];
   }
@@ -75,37 +86,13 @@ export class PlayerService {
     return this.items[this.itemIndex + 1];
   }
 
-  step() {
-    this.time = this.audio.seek() as number;
-    this.seekBarValue = Math.ceil((this.time * 100) / this.duration);
-    // continue steping
-    if (this.audio.playing()) {
-      setTimeout(() => {
-        this.step();
-      }, 1000);
-    }
-  }
-
-  play(items: Song[], index = 0) {
-    const item = items[index];
-    if (
-      !this.currentItem() ||
-      item.$key !== this.currentItem().$key
-    ) {
-      this.items = items;
-      this.itemIndex = index;
-      this.playAudio([ item.contentSource ]);
-    }
-  }
-
-  formatTime(secondsNumber: number = 0) {
-    if (!!secondsNumber || secondsNumber === 0) {
-      const minutes = Math.floor(secondsNumber / 60) || 0;
-      const seconds = Math.floor(secondsNumber - minutes * 60) || 0;
-      return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-    } else {
-      return '--:--';
-    }
+  play(items: Song[], itemIndex = 0, bundle?: Bundle) {
+    this.bundle = bundle;
+    this.items = items;
+    this.itemIndex = itemIndex;
+    // play audio
+    const item = items[itemIndex];
+    this.playAudio([ item.contentSource ]);
   }
 
   togglePlay() {
@@ -122,32 +109,24 @@ export class PlayerService {
   }
 
   togglePrev() { // NOTE: only for type of list
-    console.log('prev');
-    // const item = this.prevItem();
-    // if (!!this.bundle && !!item) {
-    //   this.playList(this.list, this.items, item, this.playerType, e);
-    // }
+    return this.play(this.items, this.itemIndex - 1, this.bundle);
   }
 
   toggleNext() {
-    console.log('next');
-    // const item = this.nextItem();
-    // if (!!item) {
-    //   if (this.list) {
-    //     this.playList(this.list, this.items, item, this.playerType, e);
-    //   } else {
-    //     this.play(this.nextAudio(), this.playerType, e);
-    //   }
-    // } else {
-    //   this.playList(this.list, this.items, this.items[0], this.playerType, e);
-    // }
+    return this.play(this.items, this.itemIndex + 1, this.bundle);
   }
 
-  seek(e) {
-    this.seekBarValue = e.offsetX / e.target.offsetWidth * 100;
-    console.log(this.seekBarValue);
-    if (this.seekBarValue !== Math.ceil((this.time * 100) / this.duration)) {
-      this.audio.seek((this.seekBarValue * this.duration) / 100);
+  seek() {
+    this.audio.seek((this.seekBarValue * this.duration) / 100);
+  }
+
+  formatTime(secondsNumber: number = 0) {
+    if (!!secondsNumber || secondsNumber === 0) {
+      const minutes = Math.floor(secondsNumber / 60) || 0;
+      const seconds = Math.floor(secondsNumber - minutes * 60) || 0;
+      return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+    } else {
+      return '--:--';
     }
   }
 
