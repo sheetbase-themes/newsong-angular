@@ -15,22 +15,61 @@
 				"tags": "102",
 				"pages": "103",
 				"posts": "104",
-				"products": "107"
+				"products": "107",
+				"songs": "201",
+				"bundles": "202"
 			}
 		}
 	},
 	"configMaps": {
-		"backend": ["apiKey", "databaseId", "emailPrefix"],
-		"frontend": ["apiKey", "backendUrl", "databaseId", "databaseGids"]
+		"backend": [
+			"apiKey",
+			"databaseId",
+			"emailPrefix"
+		],
+		"frontend": [
+			"apiKey",
+			"backendUrl",
+			"databaseId",
+			"databaseGids"
+		]
 	},
 	"urlMaps": {
-		"databaseId": ["db", "https://docs.google.com/spreadsheets/d/", "/edit"]
+		"databaseId": [
+			"db",
+			"https://docs.google.com/spreadsheets/d/",
+			"/edit"
+		]
 	},
 	"setupHooks": {
-		"apiKey": ["Generate the API key", "randomStr"],
-		"databaseId": ["Create the database", "createDatabase"]
+		"apiKey": [
+			"Generate the API key",
+			"randomStr"
+		],
+		"databaseId": [
+			"Create the database",
+			"createDatabase"
+		]
 	},
-	"models": ["categories", "tags", "pages", "posts", "products"],
+	"models": [
+		"categories",
+		"tags",
+		"pages",
+		"posts",
+		"products",
+		{
+			"from": "posts",
+			"name": "songs",
+			"gid": "201",
+			"public": true
+		},
+		{
+			"from": "posts",
+			"name": "bundles",
+			"gid": "202",
+			"public": true
+		}
+	],
 	"deployment": {
 		"provider": "github",
 		"url": "https://sheetbase-themes.github.io/newsong-angular",
