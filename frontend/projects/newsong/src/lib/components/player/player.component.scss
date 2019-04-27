@@ -85,14 +85,8 @@
   left: 0;
   bottom: 0;
   width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
   
   .container {
-    width: 100%;
-    max-width: 768px;
     height: 68px;
     border-top: #{app-size('border')} solid #{app-color('light')};
     background: #FFF;
@@ -284,7 +278,7 @@
 
       }
 
-      @media (min-width: 768px) {        
+      @media (min-width: 768px) {
 
         .item {
           width: auto;
@@ -412,15 +406,19 @@
       &.active {
         bottom: 0;
       }
-  
-    }
 
-    @media (min-width: 768px) {
-      border-left: 1px solid #{app-color('light')};
-      border-right: 1px solid #{app-color('light')};
-      border-bottom: 1px solid #{app-color('light')};
-      border-radius: 5px;
-      margin-bottom: 1rem;
+      @media (min-width: 768px) {
+        left: 50%;
+        margin-left: -384px;
+        border-radius: app-size('radius');
+        border: 1px solid #{app-color('light')};
+        
+        &.active {
+          bottom: 50%;
+          margin-bottom: -250px;
+        }
+      }
+  
     }
 
   }
