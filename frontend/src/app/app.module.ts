@@ -16,7 +16,7 @@ import {
   DateService,
 } from '@sheetbase/angular';
 
-import { PlayerComponentModule } from 'newsong';
+import { PlayerService, PlayerComponentModule } from 'newsong';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +43,9 @@ import { AppRoutingModule } from './app-routing.module';
     NavService,
     DataService,
     DateService,
+
+    // app
+    PlayerService,
   ],
   bootstrap: [AppComponent]
 })

@@ -31,19 +31,16 @@ export class HomePage implements OnInit {
     // songs
     this.databaseService.items<Song>('songs')
     .subscribe(songs => {
-      console.log(songs);
       this.songs = songs;
     });
     // albums
     this.databaseService.items<Bundle>('bundles', { type: 'album' })
     .subscribe(albums => {
-      console.log(albums);
       this.albums = albums;
     });
     // playlists
     this.databaseService.items<Bundle>('bundles', { type: 'playlist' })
     .subscribe(playlists => {
-      console.log(playlists);
       this.playlists = playlists;
     });
     // set meta

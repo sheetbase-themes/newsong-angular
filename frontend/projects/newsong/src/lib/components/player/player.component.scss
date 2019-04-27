@@ -1,5 +1,83 @@
 @import '../../theming/index.scss';
 
+@mixin seekbar {
+
+  input[type=range] {
+    -webkit-appearance: none;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+
+  // webkit
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: #eeeeee;
+    border-radius: 1rem;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    cursor: pointer;
+    -webkit-appearance: none;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 100%;
+    background: #cccccc;
+    margin-top: -.4rem;
+  }
+
+  // moz
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: #eeeeee;
+    border-radius: 1rem;
+  }
+  input[type=range]::-moz-range-progress {
+    background-color: #333333;
+  }
+  input[type=range]::-moz-range-thumb {
+    cursor: pointer;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 100%;
+    background: #cccccc;
+    margin-top: -.4rem;
+  }
+
+  // ms
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    background: #333333;
+    border-radius: 1rem;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: #eeeeee;
+    border-radius: 1rem;
+  }
+  input[type=range]::-ms-thumb {
+    cursor: pointer;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 100%;
+    background: #cccccc;
+    margin-top: -.4rem;
+  }
+
+}
+
 .player {
   position: fixed;
   left: 0;
@@ -17,6 +95,8 @@
       
       .item {
         display: flex;
+        width: 3rem;
+        height: 3rem;
         
         .thumbnail {
           
@@ -70,11 +150,17 @@
       .controls {
         flex-grow: 1;
         display: flex;
-  
+        align-items: center;
+        justify-content: center;
+        
         .seeker {
           flex-grow: 1;
+          padding: 0 1rem;
   
           .seekbar {
+            padding-bottom: .5rem;
+
+            @include seekbar();
   
             input {
               width: 100%;
@@ -85,6 +171,8 @@
   
           .timing {
             display: flex;
+            color: app-color('medium');
+            font-size: .7rem;
   
             .begin {
               flex-grow: 1;
@@ -98,11 +186,41 @@
         }
   
         .meta {
-  
+
+          .list {
+            background: none;
+
+            img {
+              width: 1.2rem;
+            }
+          }
         }
   
         .buttons {
-  
+          
+          .prev {
+            display: none;
+
+            img {
+              width: 1.2rem;
+            }
+          }
+
+          .play {
+            background: none;
+
+            img {
+              width: 2rem;
+            }
+          }
+
+          .next {
+            display: none;
+
+            img {
+              width: 1.2rem;
+            }
+          }
         }
   
       }
@@ -122,10 +240,41 @@
       background: #FFF;
 
       .head {
+        display: flex;
         
+        .left {
+
+        }
+
+        .right {
+          text-align: right;
+        }
       }
       
       .body {
+
+        .content {
+
+        }
+
+        .playlist {
+
+          .bundle {
+
+            .thumbnail {
+
+            }
+
+            .info {
+
+            }
+          }
+
+          .songs {
+
+          }
+
+        }
         
       }
       

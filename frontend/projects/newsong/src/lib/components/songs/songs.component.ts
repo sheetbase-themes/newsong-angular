@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+import { Post as Song } from '@sheetbase/models';
+
+import { PlayerService } from '../../services/player/player.service';
 
 @Component({
   selector: 'newsong-songs',
@@ -7,7 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SongsComponent implements OnInit {
 
-  constructor() { }
+  @Input() songs: Song;
+  @Output() view: EventEmitter<Song> = new EventEmitter();
+
+  constructor(
+    public player: PlayerService,
+  ) { }
 
   ngOnInit() {}
 

@@ -39,22 +39,30 @@
         </div>
   
         <div class="meta">
-          <button class="list" (click)="tab='playlist'; showDetail=true;">=</button>
+          <button class="list" (click)="tab='playlist'; showDetail=true;">
+            <img src="https://img.icons8.com/material-sharp/32/000000/list.png">
+          </button>
         </div>
   
         <div class="buttons">
           <button class="prev"
             [disabled]="!player.prevItem()"
             (click)="player.togglePrev()"
-          ><</button>
+          >
+            <img src="https://img.icons8.com/ios/32/000000/less-than-filled.png">
+          </button>
           <button class="play"
             [disabled]="!player.available"
             (click)="player.togglePlay()"
-          >{{ player.playing() ? 'Pause' : 'Play' }}</button>
+          >
+            <img [src]="player.playing() ? 'https://img.icons8.com/ios/32/000000/pause-filled.png' : 'https://img.icons8.com/ios/32/000000/play-filled.png'">
+          </button>
           <button class="next"
             [disabled]="!player.nextItem()"
             (click)="player.toggleNext()"
-          >></button>
+          >
+            <img src="https://img.icons8.com/ios/32/000000/more-than-filled.png">
+          </button>
         </div>
     
       </div>
@@ -84,12 +92,24 @@
   
         <div class="playlist" *ngIf="tab==='playlist'">
   
-          <div class="bundle">
-            <h1>Playlist</h1>
+          <div class="bundle" *ngIf="!!player.bundle">
+            <div class="thumbnail">
+              <img [src]="player.bundle?.thumbnail">
+            </div>
+            <div class="info">
+              <h3 class="title">{{ player.bundle?.title }}</h3>
+              <div class="author">{{ player.bundle?.author }}</div>
+              <div class="description">{{ player.bundle?.excerpt }}</div>
+              <div class="meta">
+                <button class="view">View</button>
+              </div>
+            </div>
           </div>
   
           <div class="songs">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quas, eius labore excepturi rem cumque! Nulla impedit explicabo reiciendis cum maxime quam temporibus exercitationem voluptatem autem fugit, modi assumenda at?
+            <newsong-songs
+              [songs]="player.items"
+            ></newsong-songs>
           </div>
         </div>
   
