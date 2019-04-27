@@ -33,6 +33,7 @@
   
           <div class="timing">
             <div class="begin">{{ player.formatTime(player.time) }}</div>
+            <div class="sep">/</div>
             <div class="end">{{ player.formatTime(player.duration) }}</div>
           </div>
   
@@ -40,7 +41,7 @@
   
         <div class="meta">
           <button class="list" (click)="tab='playlist'; showDetail=true;">
-            <img src="https://img.icons8.com/material-sharp/32/000000/list.png">
+            <img src="https://img.icons8.com/material-sharp/32/333333/list.png">
           </button>
         </div>
   
@@ -49,19 +50,19 @@
             [disabled]="!player.prevItem()"
             (click)="player.togglePrev()"
           >
-            <img src="https://img.icons8.com/ios/32/000000/less-than-filled.png">
+            <img src="https://img.icons8.com/ios-glyphs/32/333333/skip-to-start.png">
           </button>
           <button class="play"
             [disabled]="!player.available"
             (click)="player.togglePlay()"
           >
-            <img [src]="player.playing() ? 'https://img.icons8.com/ios/32/000000/pause-filled.png' : 'https://img.icons8.com/ios/32/000000/play-filled.png'">
+            <img [src]="player.playing() ? 'https://img.icons8.com/ios/32/333333/pause-filled.png' : 'https://img.icons8.com/ios/32/333333/play-filled.png'">
           </button>
           <button class="next"
             [disabled]="!player.nextItem()"
             (click)="player.toggleNext()"
           >
-            <img src="https://img.icons8.com/ios/32/000000/more-than-filled.png">
+            <img src="https://img.icons8.com/ios-glyphs/32/333333/end.png">
           </button>
         </div>
     
@@ -74,12 +75,18 @@
       <div class="head">
   
         <div class="left">
-          <button (click)="tab='content'">Content</button>
-          <button (click)="tab='playlist'">Playlist</button>
+          <button
+            [ngClass]="{ 'active': tab === 'content' }"
+            (click)="tab='content'"
+          >Content</button>
+          <button
+            [ngClass]="{ 'active': tab === 'playlist' }"
+            (click)="tab='playlist'"
+          >Playlist</button>
         </div>
   
         <div class="right">
-          <button (click)="showDetail=false">X</button>
+          <button class="close" (click)="showDetail=false">X</button>
         </div>
   
       </div>
@@ -87,30 +94,45 @@
       <div class="body">
   
         <div class="content" *ngIf="tab==='content'">
-          <article [innerHtml]="player.currentItem()?.content"></article>
+          <article
+            *ngIf="!!player.currentItem()?.content"
+            [innerHtml]="player.currentItem()?.content"
+          ></article>
+          <div class="no-content" *ngIf="!player.currentItem()?.content">
+            <img src="https://img.icons8.com/android/64/eeeeee/music.png">
+          </div>
         </div>
   
         <div class="playlist" *ngIf="tab==='playlist'">
-  
-          <div class="bundle" *ngIf="!!player.bundle">
-            <div class="thumbnail">
-              <img [src]="player.bundle?.thumbnail">
-            </div>
-            <div class="info">
-              <h3 class="title">{{ player.bundle?.title }}</h3>
-              <div class="author">{{ player.bundle?.author }}</div>
-              <div class="description">{{ player.bundle?.excerpt }}</div>
-              <div class="meta">
-                <button class="view">View</button>
+
+          <div class="content" *ngIf="!!player.available">
+
+            <div class="bundle" *ngIf="!!player.bundle">
+              <div class="thumbnail">
+                <img [src]="player.bundle?.thumbnail">
+              </div>
+              <div class="info">
+                <h3 class="title">{{ player.bundle?.title }}</h3>
+                <div class="author">{{ player.bundle?.author }}</div>
+                <div class="description">{{ player.bundle?.excerpt }}</div>
+                <div class="meta">
+                  <button class="view">View</button>
+                </div>
               </div>
             </div>
+
+            <div class="songs">
+              <newsong-songs
+                [songs]="player.items"
+              ></newsong-songs>
+            </div>
+
+          </div>
+          
+          <div class="no-content" *ngIf="!player.available">
+            <img src="https://img.icons8.com/metro/64/eeeeee/list.png">
           </div>
   
-          <div class="songs">
-            <newsong-songs
-              [songs]="player.items"
-            ></newsong-songs>
-          </div>
         </div>
   
       </div>

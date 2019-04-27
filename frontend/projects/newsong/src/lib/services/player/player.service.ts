@@ -36,7 +36,8 @@ export class PlayerService {
     });
     // init items
     this.items.push({
-      title: 'Newsong',
+      title: 'Welcome!',
+      author: 'Sheetbase' as any,
       contentSource: 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA',
     });
   }
