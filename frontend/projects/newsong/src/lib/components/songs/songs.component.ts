@@ -11,7 +11,7 @@ import { PlayerService } from '../../services/player/player.service';
 })
 export class SongsComponent implements OnInit {
 
-  @Input() songs: Song;
+  @Input() songs: Song[];
   @Output() view: EventEmitter<Song> = new EventEmitter();
 
   constructor(

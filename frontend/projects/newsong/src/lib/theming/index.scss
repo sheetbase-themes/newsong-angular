@@ -1,2 +1,22 @@
 @import './variables.scss';
 @import '~@sheetbase/angular/theming/index.scss';
+
+@mixin button-gradient($key: 'primary', $size: 'normal', $style: 'normal') {
+  @include button($key, $size, $style);
+  background: app-gradient($key);
+}
+
+@mixin skeleton-item($shinestart: -5rem, $shineend: 7.5rem, $shineduration: 2s, $bgsize: 15rem, $startpos: 0px, $middlepos: 5rem, $endpos: 7.5rem, $basecolor: #F4F4F4, $shinecolor: rgba(229,229,229,0.8)) {
+  @keyframes shine {
+    0% {
+      background-position: $shinestart;
+    }
+    50%, 100% {
+      background-position: $shineend;
+    }
+  }
+
+  background-image: linear-gradient(90deg, $basecolor $startpos, $shinecolor $middlepos, $basecolor $endpos);
+  background-size: $bgsize;
+  animation: shine $shineduration infinite ease-out;
+}

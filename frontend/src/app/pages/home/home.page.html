@@ -4,14 +4,39 @@
 
   <main>
 
-    <button (click)="playAudio()">Play audio</button>
+    <section class="jumbotron">
 
-    <h1>Home!</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quam ducimus at? Pariatur, voluptas error sint repellendus ipsa laboriosam minus adipisci ut reprehenderit maxime neque quis. Inventore doloremque quia quam.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quam ducimus at? Pariatur, voluptas error sint repellendus ipsa laboriosam minus adipisci ut reprehenderit maxime neque quis. Inventore doloremque quia quam.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quam ducimus at? Pariatur, voluptas error sint repellendus ipsa laboriosam minus adipisci ut reprehenderit maxime neque quis. Inventore doloremque quia quam.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quam ducimus at? Pariatur, voluptas error sint repellendus ipsa laboriosam minus adipisci ut reprehenderit maxime neque quis. Inventore doloremque quia quam.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quam ducimus at? Pariatur, voluptas error sint repellendus ipsa laboriosam minus adipisci ut reprehenderit maxime neque quis. Inventore doloremque quia quam.</p>
+      <newsong-jumbotron
+        title="New song"
+        tagline="Lorem ipsum dolat init!"
+        image="https://images.pexels.com/photos/6320/smartphone-vintage-technology-music.jpg?auto=compress&cs=tinysrgb&h=750&w=1260"
+      ></newsong-jumbotron>
+
+    </section>
+
+    <section class="songs" padding>
+
+      <newsong-title
+        title="Songs"
+      ></newsong-title>
+
+      <newsong-songs
+        [songs]="songs"
+      ></newsong-songs>
+
+    </section>
+
+    <section class="contact" padding>
+
+      <newsong-title
+        title="Contact us"
+      ></newsong-title>
+
+      <newsong-contact
+        (sendMessage)="sendMessage($event)"
+      ></newsong-contact>
+
+    </section>
 
   </main>
 

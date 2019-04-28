@@ -7,7 +7,7 @@
 
     input, textarea {
       background: #FFF;
-      padding: .75rem;
+      padding: .5rem .75rem;
       margin-bottom: 1rem;
     }
     
@@ -38,33 +38,10 @@
       .actions {
         display: flex;
         padding: 1rem 0;
-  
-        .left {
-          flex-grow: 1;
-  
-          a {
-            display: inline-block;
-            text-decoration: none;
-            margin-right: 1rem;
-            opacity: .5;
 
-            &:hover {
-              opacity: .7;
-            }
-  
-            img {
-              width: 2rem;
-              height: 2rem;
-            }
-          }
-        }
-  
-        .right {
-          text-align: center;
-  
-          button {
-            @include button('primary');
-          }
+        button {
+          @include button-gradient;
+          color: #FFF;
         }
       }
     }

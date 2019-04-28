@@ -1,0 +1,73 @@
+@import '../../theming/index.scss';
+
+.jumbotron {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+  .inner {
+    background: rgba(app-color('light'), .8);
+    
+    .content {
+      padding: 5rem 1rem 7rem;
+
+      .title {
+        font-size: 3rem;
+        text-align: center;
+        font-weight: 700;
+      }
+      
+      .tagline {
+        text-align: center;
+        font-size: 1.3rem;
+      }
+
+    }
+    
+    .actions {
+      width: 100%;
+      overflow: visible;
+      height: 3rem;
+      background: #FFF;
+      padding: 1rem;
+      
+      .buttons {
+        background: #FFF;
+        text-align: center;
+        margin-top: -3rem;
+        padding: 1rem;
+        border-radius: app-size('radius');
+        border-top: 1px solid #{app-color('light')};
+        border-left: 1px solid #{app-color('light')};
+        border-right: 1px solid #{app-color('light')};
+        border-bottom: #{app-size('border')} solid #{app-color('light')};
+
+        .radio {
+          @include button-gradient($key: 'danger');
+          margin-right: .5rem;
+        }
+        .songs {
+          @include button-gradient($key: 'dark');
+          margin-right: .5rem;
+        }
+        .store {
+          @include button-gradient($key: 'success');
+          margin-right: .5rem;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .inner {
+      padding: 6rem 1rem 5rem;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .inner {
+      padding: 8rem 1rem 7rem;
+    }
+  }
+
+}

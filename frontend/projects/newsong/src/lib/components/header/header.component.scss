@@ -47,6 +47,7 @@ header {
           width: calc(100% - 2rem);
           max-width: 320px;
           margin-left: 0 !important;
+          background: #FFF;
 
           .head {
             text-align: center;
@@ -102,6 +103,7 @@ header {
           .main {
             top: 0;
             margin: 5rem 1rem;
+            border-bottom: #{app-size('border')} solid #{app-color('light')};
           }
         }
       }
@@ -110,8 +112,7 @@ header {
         padding: .5rem 1rem;
 
         .cta {
-          @include button;
-          background: app-gradient();
+          @include button-gradient;
           color: #FFF;
         }
       }

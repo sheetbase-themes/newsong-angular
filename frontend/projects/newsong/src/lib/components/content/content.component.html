@@ -1,0 +1,4 @@
+<div class="content">
+  <sheetbase-skeleton *ngIf="!content"></sheetbase-skeleton>
+  <article *ngIf="!!content" class="dynamic-content" [innerHtml]="content | safe"></article>
+</div>

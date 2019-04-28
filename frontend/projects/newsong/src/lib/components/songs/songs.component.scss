@@ -1,0 +1,115 @@
+@import '../../theming/index.scss';
+
+.songs {
+  @include list;
+
+  .song {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    & > a {
+      width: 100%;
+      display: flex;
+      color: app-color('dark');
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .thumbnail {
+      width: 4rem;
+      height: 4rem;
+      
+      img {
+        max-width: 4rem;
+        border-radius: app-size('radius');
+      }
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: 0 1rem;
+
+      .title {
+        margin-top: 0;
+        margin-bottom: .5rem;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      .description {
+        color: app-color('medium');
+        font-size: .8rem;
+        display: none;
+      }
+
+      .author {
+        font-size: .9rem;
+      }
+
+    }
+
+    .meta {
+
+      .duration {
+        display: none;
+      }
+
+      .buttons {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .listen {
+          @include button-gradient($size: 'small');
+        }
+        .playing {
+          @include button-gradient($key: 'light', $size: 'small');
+        }
+      }
+    }
+
+  }
+
+}
+
+.skeleton {
+  @include list;
+
+  .item {
+    display: flex;
+    margin-bottom: 1rem;
+
+    .thumbnail {
+      border-radius: app-size('radius');
+      width: 4rem;
+      height: 4rem;
+      
+      @include skeleton-item;
+    }
+    
+    .content {
+      padding: .5rem 1rem 1rem;
+      
+      &::before, &::after {
+        border-radius: app-size('radius');
+        content: '';
+        display: block;
+        height: 1rem;
+        margin: 0 0 .5rem;
+
+        @include skeleton-item;
+      }
+      &::before {
+        width: 10rem;
+      }
+      &::after {
+        width: 7rem;
+      }
+    }
+
+  }
+
+}

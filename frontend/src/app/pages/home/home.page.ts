@@ -47,8 +47,4 @@ export class HomePage implements OnInit {
     this.nav.setMeta();
   }
 
-  playAudio() {
-    this.player.play(this.songs);
-  }
-
 }

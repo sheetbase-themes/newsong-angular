@@ -93,8 +93,8 @@
   
       <div class="body">
   
-        <div class="content" *ngIf="tab==='content'">
-          <article
+        <div class="main" *ngIf="tab==='content'">
+          <article class="content"
             *ngIf="!!player.currentItem()?.content"
             [innerHtml]="player.currentItem()?.content"
           ></article>

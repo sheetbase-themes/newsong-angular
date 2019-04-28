@@ -4,6 +4,8 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { TitleComponentModule, JumbotronComponentModule, SongsComponentModule, ContactComponentModule } from 'newsong';
+
 import { ComponentsModule } from '../../components/components.module';
 import { HomePage } from './home.page';
 
@@ -18,6 +20,10 @@ import { HomePage } from './home.page';
         component: HomePage
       }
     ]),
+    TitleComponentModule,
+    JumbotronComponentModule,
+    SongsComponentModule,
+    ContactComponentModule,
     ComponentsModule,
   ],
   declarations: [HomePage]

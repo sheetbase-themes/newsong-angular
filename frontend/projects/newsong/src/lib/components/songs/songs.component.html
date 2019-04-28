@@ -1,5 +1,5 @@
-<ul class="songs">
-  <li class="song" *ngFor="let item of songs">
+<ul class="songs" *ngIf="!!songs">
+  <li class="song" *ngFor="let item of songs; let i = index">
 
     <a [href]="'/song/' + item.$key" (click)="view.emit(item); false;">
 
@@ -16,14 +16,24 @@
       </div>
 
       <div class="meta">
-        <div class="duration">00:00</div>
+        <div class="duration">{{ player.formatTime(item.duration) }}</div>
         <div class="buttons">
-          <button class="listen" *ngIf="player.currentItem()?.$key !== item.$key">Listen</button>
-          <div class="playing" *ngIf="player.currentItem()?.$key === item.$key">Playing</div>
+          <button class="listen"
+            *ngIf="!!item.contentSource && player.currentItem()?.$key !== item.$key"
+            (click)="player.play(songs, i)"
+          >Listen</button>
+          <button class="playing" *ngIf="player.currentItem()?.$key === item.$key">Playing</button>
         </div>
       </div>
 
     </a>
 
+  </li>
+</ul>
+
+<ul class="skeleton" *ngIf="!songs">
+  <li class="item" *ngFor="let item of [1, 2, 3]">
+    <div class="thumbnail"></div>
+    <div class="content"></div>
   </li>
 </ul>
