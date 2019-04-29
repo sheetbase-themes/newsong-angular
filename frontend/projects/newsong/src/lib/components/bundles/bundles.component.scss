@@ -1,9 +1,9 @@
 @import '../../theming/index.scss';
 
-.songs {
+.bundles {
   @include list;
 
-  .song {
+  .bundle {
     width: 100%;
     margin-bottom: 1rem;
 
@@ -18,14 +18,14 @@
     }
 
     .thumbnail {
-      width: 3rem;
-      height: 3rem;
+      width: 5rem;
+      height: 5rem;
       
       img {
-        width: 3rem;
-        max-width: 3rem;
-        height: 3rem;
-        border-radius: 100%;
+        width: 5rem;
+        max-width: 5rem;
+        height: 5rem;
+        border-radius: app-size('radius');
       }
     }
 
@@ -35,15 +35,36 @@
 
       .title {
         margin-top: 0;
-        margin-bottom: .5rem;
+        margin-bottom: 0;
         font-size: .95rem;
         font-weight: 700;
       }
+      
+      .info {
+        margin-bottom: .5rem;
 
-      .description {
-        color: app-color('medium');
-        font-size: .8rem;
-        display: none;
+        .type {
+          text-transform: uppercase;
+          font-size: .5rem;
+          font-weight: 700;
+          padding: .1rem .2rem;
+          color: #FFF;
+          border-radius: app-size('radius');
+
+          &.album {
+            background: app-gradient('tertiary');
+          }
+          &.playlist {
+            background: app-gradient('dark');
+          }
+        }
+
+        .description {
+          color: app-color('medium');
+          font-size: .8rem;
+          display: none;
+        }
+
       }
 
       .author {
@@ -54,10 +75,6 @@
 
     .meta {
 
-      .duration {
-        display: none;
-      }
-
       .buttons {
         height: 100%;
         display: flex;
@@ -65,7 +82,7 @@
         align-items: center;
 
         .listen {
-          @include button-gradient($key: 'primary', $size: 'small');
+          @include button-gradient($key: 'secondary', $size: 'small');
           color: #FFF;
         }
         .playing {
@@ -86,9 +103,9 @@
     margin-bottom: 1rem;
 
     .thumbnail {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 100%;
+      width: 5rem;
+      height: 5rem;
+      border-radius: app-size('radius');
       
       @include skeleton-item;
     }

@@ -5,9 +5,9 @@ import {
   Post as Bundle,
   Post as Video,
 } from '@sheetbase/models';
-import { AppService, NavService, DataService, DatabaseService } from '@sheetbase/angular';
+import { AppService, NavService, DataService } from '@sheetbase/angular';
 
-import { PlayerService } from 'newsong';
+import { DataService as AppDataService, PlayerService } from 'newsong';
 
 @Component({
   selector: 'app-home',
@@ -17,13 +17,12 @@ import { PlayerService } from 'newsong';
 export class HomePage implements OnInit {
 
   songs: Song[];
-  albums: Bundle[];
-  playlists: Bundle[];
+  bundles: Bundle[];
   videos: Video[];
 
   constructor(
     private dataService: DataService,
-    private databaseService: DatabaseService,
+    private appDataService: AppDataService,
     public appService: AppService,
     public nav: NavService,
     public player: PlayerService,
@@ -31,23 +30,15 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     // songs
-    this.databaseService.items<Song>('songs', null, true, 1440)
-    .subscribe(songs => {
+    this.appDataService.songs().subscribe(songs => {
       this.songs = songs;
     });
-    // albums
-    this.databaseService.items<Bundle>('bundles', { type: 'album' }, true, 1440)
-    .subscribe(albums => {
-      this.albums = albums;
-    });
-    // playlists
-    this.databaseService.items<Bundle>('bundles', { type: 'playlist' }, true, 1440)
-    .subscribe(playlists => {
-      this.playlists = playlists;
+    // bundles
+    this.appDataService.bundles().subscribe(bundles => {
+      this.bundles = bundles;
     });
     // videos
-    this.databaseService.items<Video>('videos', null, true, 1440)
-    .subscribe(videos => {
+    this.appDataService.videos().subscribe(videos => {
       this.videos = videos;
     });
     // set meta

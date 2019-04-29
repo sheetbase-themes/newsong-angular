@@ -9,6 +9,7 @@ import {
   JumbotronComponentModule,
   SongsComponentModule,
   VideosComponentModule,
+  BundlesComponentModule,
   ContactComponentModule,
 } from 'newsong';
 
@@ -30,6 +31,7 @@ import { HomePage } from './home.page';
     JumbotronComponentModule,
     SongsComponentModule,
     VideosComponentModule,
+    BundlesComponentModule,
     ContactComponentModule,
     ComponentsModule,
   ],

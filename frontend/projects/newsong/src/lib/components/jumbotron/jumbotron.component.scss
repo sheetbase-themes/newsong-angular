@@ -9,7 +9,7 @@
     background: rgba(app-color('light'), .8);
     
     .content {
-      padding: 5rem 1rem 7rem;
+      padding: 4rem 1rem 7.5rem;
 
       .title {
         font-size: 3rem;
@@ -32,9 +32,12 @@
       padding: 1rem;
       
       .buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background: #FFF;
         text-align: center;
-        margin-top: -3rem;
+        margin-top: -3.25rem;
         padding: 1rem;
         border-radius: app-size('radius');
         border-top: 1px solid #{app-color('light')};
@@ -42,17 +45,20 @@
         border-right: 1px solid #{app-color('light')};
         border-bottom: #{app-size('border')} solid #{app-color('light')};
 
-        .radio {
-          @include button-gradient($key: 'danger');
-          margin-right: .5rem;
-        }
         .songs {
-          @include button-gradient($key: 'dark');
+          @include button-gradient($key: 'primary', $size: 'normal');
           margin-right: .5rem;
+          color: #FFF;
+        }
+        .radio {
+          @include button-gradient($key: 'danger', $size: 'large');
+          margin-right: .5rem;
+          color: #FFF;
         }
         .store {
-          @include button-gradient($key: 'success');
+          @include button-gradient($key: 'success', $size: 'normal');
           margin-right: .5rem;
+          color: #FFF;
         }
       }
     }

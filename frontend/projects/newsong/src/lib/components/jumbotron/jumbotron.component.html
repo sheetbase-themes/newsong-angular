@@ -12,9 +12,9 @@
     <div class="actions">
 
       <div class="buttons">
-        <button class="radio">Radio</button>
-        <button class="songs">Songs</button>
-        <button class="store">Store</button>
+        <button class="songs" (click)="doSongs.emit()">Songs</button>
+        <button class="radio" (click)="doRadio.emit()">Radio</button>
+        <button class="store" (click)="doStore.emit()">Store</button>
       </div>
 
     </div>

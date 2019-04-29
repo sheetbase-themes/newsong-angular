@@ -411,7 +411,10 @@
         left: 50%;
         margin-left: -384px;
         border-radius: app-size('radius');
-        border: 1px solid #{app-color('light')};
+        border-top: 1px solid #{app-color('light')};
+        border-right: 1px solid #{app-color('light')};
+        border-left: 1px solid #{app-color('light')};
+        border-bottom: #{app-size('border')} solid #{app-color('light')};
         
         &.active {
           bottom: 50%;

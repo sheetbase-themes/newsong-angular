@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<ion-content>
+<ion-content #homeContent>
 
   <main>
 
@@ -10,11 +10,14 @@
         title="New song"
         tagline="Lorem ipsum dolat init!"
         image="https://images.pexels.com/photos/6320/smartphone-vintage-technology-music.jpg?auto=compress&cs=tinysrgb&h=750&w=1260"
+        (doSongs)="nav.scrollTo(homeContent, songsSection)"
+        (doRadio)="player.playRadio(songs)"
+        (doStore)="nav.navigate(['/store'])"
       ></newsong-jumbotron>
 
     </section>
 
-    <section class="songs" padding>
+    <section class="songs" padding #songsSection>
 
       <newsong-title
         title="Songs"
@@ -23,6 +26,18 @@
       <newsong-songs
         [songs]="songs"
       ></newsong-songs>
+
+    </section>
+
+    <section class="bundles" padding>
+
+      <newsong-title
+        title="Playlists"
+      ></newsong-title>
+
+      <newsong-bundles
+        [bundles]="bundles"
+      ></newsong-bundles>
 
     </section>
 

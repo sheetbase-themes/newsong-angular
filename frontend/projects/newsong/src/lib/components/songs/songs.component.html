@@ -20,7 +20,7 @@
         <div class="buttons">
           <button class="listen"
             *ngIf="!!item.contentSource && player.currentItem()?.$key !== item.$key"
-            (click)="player.play(songs, i)"
+            (click)="player.play(songs, i); $event.stopPropagation(); false;"
           >Listen</button>
           <button class="playing" *ngIf="player.currentItem()?.$key === item.$key">Playing</button>
         </div>
