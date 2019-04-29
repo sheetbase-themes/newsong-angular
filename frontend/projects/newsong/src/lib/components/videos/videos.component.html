@@ -1,3 +1,31 @@
-<p>
-  videos works!
-</p>
+<ul class="videos" *ngIf="!!videos">
+  <li class="video" *ngFor="let item of videos">
+
+    <a [href]="'/video/' + item.$key" (click)="view.emit(item); false;">
+
+      <div class="thumbnail">
+        <img [src]="thumbnail(item)">
+        <div class="duration">{{ player.formatTime(item.duration) }}</div>
+        <div class="play-icon">
+          <img src="https://img.icons8.com/ios/48/ffffff/play-filled.png">
+        </div>
+      </div>
+  
+      <div class="content">
+
+        <h3 class="title" [innerHtml]="item.title"></h3>
+        <div class="author">{{ item.author }}</div>
+
+      </div>
+
+    </a>
+
+  </li>
+</ul>
+
+<ul class="skeleton" *ngIf="!videos">
+  <li class="item" *ngFor="let item of [1, 2, 3]">
+    <div class="thumbnail"></div>
+    <div class="content"></div>
+  </li>
+</ul>

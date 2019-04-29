@@ -13,6 +13,7 @@ export const SHEETBASE_CONFIG = {
       "posts": "104",
       "products": "107",
       "songs": "201",
-      "bundles": "202"
+      "bundles": "202",
+      "videos": "203"
    }
 }

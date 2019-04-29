@@ -4,7 +4,13 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { TitleComponentModule, JumbotronComponentModule, SongsComponentModule, ContactComponentModule } from 'newsong';
+import {
+  TitleComponentModule,
+  JumbotronComponentModule,
+  SongsComponentModule,
+  VideosComponentModule,
+  ContactComponentModule,
+} from 'newsong';
 
 import { ComponentsModule } from '../../components/components.module';
 import { HomePage } from './home.page';
@@ -23,6 +29,7 @@ import { HomePage } from './home.page';
     TitleComponentModule,
     JumbotronComponentModule,
     SongsComponentModule,
+    VideosComponentModule,
     ContactComponentModule,
     ComponentsModule,
   ],

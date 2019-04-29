@@ -17,7 +17,8 @@
 				"posts": "104",
 				"products": "107",
 				"songs": "201",
-				"bundles": "202"
+				"bundles": "202",
+				"videos": "203"
 			}
 		}
 	},
@@ -67,6 +68,12 @@
 			"from": "posts",
 			"name": "bundles",
 			"gid": "202",
+			"public": true
+		},
+		{
+			"from": "posts",
+			"name": "videos",
+			"gid": "203",
 			"public": true
 		}
 	],

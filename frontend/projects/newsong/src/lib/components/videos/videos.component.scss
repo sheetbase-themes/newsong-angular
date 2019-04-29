@@ -1,0 +1,122 @@
+@import '../../theming/index.scss';
+
+.videos {
+  @include list;
+
+  .video {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    & > a {
+      width: 100%;
+      display: flex;
+      color: app-color('dark');
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .thumbnail {
+      position: relative;
+      width: 7rem;
+      height: 4rem;
+      
+      img {
+        max-width: 7rem;
+        border-radius: .1rem;
+      }
+
+      .duration {
+        position: absolute;
+        background: rgba(0, 0, 0, .7);
+        color: #FFF;
+        border-radius: .1rem;
+        padding: .1rem .2rem;
+        right: .2rem;
+        bottom: .2rem;
+        font-size: .7rem;
+        font-weight: 700;
+      }
+
+      .play-icon {
+        position: absolute;
+        top: 1rem;
+        left: 2.5rem;
+        opacity: 0;
+
+        img {
+          width: 2rem;
+        }
+      }
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: 0 1rem;
+
+      .title {
+        margin-top: 0;
+        margin-bottom: .5rem;
+        font-size: .95rem;
+        font-weight: 700;
+      }
+
+      .author {
+        font-size: .9rem;
+      }
+
+    }
+
+    &:hover {
+
+      .thumbnail {
+
+        .play-icon {
+          opacity: .7;
+        }
+      }
+    }
+
+  }
+
+}
+
+.skeleton {
+  @include list;
+
+  .item {
+    display: flex;
+    margin-bottom: 1rem;
+
+    .thumbnail {
+      border-radius: .1rem;
+      width: 7rem;
+      height: 4rem;
+      
+      @include skeleton-item;
+    }
+    
+    .content {
+      padding: .5rem 1rem 1rem;
+      
+      &::before, &::after {
+        border-radius: .1rem;
+        content: '';
+        display: block;
+        height: 1rem;
+        margin: 0 0 .5rem;
+
+        @include skeleton-item;
+      }
+      &::before {
+        width: 8rem;
+      }
+      &::after {
+        width: 6rem;
+      }
+    }
+
+  }
+
+}
