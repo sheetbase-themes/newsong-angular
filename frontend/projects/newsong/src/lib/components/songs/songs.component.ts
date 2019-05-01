@@ -13,6 +13,7 @@ export class SongsComponent implements OnInit {
 
   @Input() songs: Song[];
   @Output() view: EventEmitter<Song> = new EventEmitter();
+  @Output() play: EventEmitter<number> = new EventEmitter();
 
   constructor(
     public player: PlayerService,

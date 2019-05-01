@@ -25,6 +25,7 @@
 
       <newsong-songs
         [songs]="songs"
+        (play)="player.play(songs, $event)"
       ></newsong-songs>
 
     </section>
@@ -37,6 +38,7 @@
 
       <newsong-bundles
         [bundles]="bundles"
+        (play)="player.play($event.meta['songs'], 0, $event)"
       ></newsong-bundles>
 
     </section>

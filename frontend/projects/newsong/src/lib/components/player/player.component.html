@@ -114,7 +114,6 @@
               <div class="info">
                 <h3 class="title">{{ player.bundle?.title }}</h3>
                 <div class="author">{{ player.bundle?.author }}</div>
-                <div class="description">{{ player.bundle?.excerpt }}</div>
                 <div class="meta">
                   <button class="view">View</button>
                 </div>
@@ -124,6 +123,7 @@
             <div class="songs">
               <newsong-songs
                 [songs]="player.items"
+                (play)="player.play(player.items, $event, player.bundle)"
               ></newsong-songs>
             </div>
 

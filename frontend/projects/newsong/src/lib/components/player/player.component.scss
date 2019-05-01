@@ -385,20 +385,29 @@
           padding: 1rem 1rem 3rem;
 
           .bundle {
+            display: flex;
 
             .thumbnail {
-
+              width: 30%;
             }
 
             .info {
 
+              .title {
+
+              }
+              .author {
+
+              }
+              .meta {
+
+              }
             }
           }
 
           .songs {
 
           }
-
         }
         
       }

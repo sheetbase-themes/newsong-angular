@@ -22,7 +22,7 @@
         <div class="buttons">
           <button class="listen"
             *ngIf="player.bundle?.$key !== item.$key"
-            (click)="player.play(item.content, i, item); $event.stopPropagation(); false;"
+            (click)="playBundle(item); $event.stopPropagation(); false;"
           >Listen</button>
           <button class="playing"
             *ngIf="player.bundle?.$key === item.$key"
