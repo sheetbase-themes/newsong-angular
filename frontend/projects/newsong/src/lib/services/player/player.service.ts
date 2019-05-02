@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { Howl } from 'howler';
 
 import {
@@ -6,26 +7,34 @@ import {
   Post as Bundle,
 } from '@sheetbase/models';
 
+import { PlayerType } from '../../types';
+
 @Injectable({
   providedIn: 'root'
 })
 export class PlayerService {
 
+  // system
   private audio: Howl;
 
+  // data
   bundle: Bundle; // album, playlist
   items: Song[] = []; // songs
   itemIndex = 0;
 
-  available = false;
-
+  // timing
   duration = 0;
   time = 0;
   seekBarValue = 0;
 
+  // misc
+  available = false;
+  type: PlayerType = 'audio';
   nextItemQueued = false;
 
-  constructor() {
+  constructor(
+    private toastController: ToastController,
+  ) {
     this.init();
   }
 
@@ -36,8 +45,9 @@ export class PlayerService {
     });
     // init items
     this.items.push({
+      $key: '__',
       title: 'Welcome!',
-      author: 'Sheetbase' as any,
+      author: 'From Me' as any,
       contentSource: 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA',
     });
   }
@@ -67,21 +77,18 @@ export class PlayerService {
     // autoplay next song
     if (
       !this.nextItemQueued &&
-      this.time > (this.duration - 5)
+      this.time > (this.duration - 10)
     ) {
       this.nextItemQueued = true;
       const nextIndex = !!this.nextItem() ? this.itemIndex + 1 : 0;
       // notify
-      const item = this.items[nextIndex];
-      console.log('Next song ...', item);
-      // play next song after 7s
+      this.playNextNotifier(this.items[nextIndex]);
+      // play next song
       setTimeout(() => {
         this.play(this.items, nextIndex, this.bundle);
-      }, 7000);
-      // reset checker after 10s
-      setTimeout(() => {
+        // reset checker
         this.nextItemQueued = false;
-      }, 10000);
+      }, 13000);
     }
     // continue steping
     if (this.audio.playing()) {
@@ -89,6 +96,17 @@ export class PlayerService {
         this.playingStep();
       }, 1000);
     }
+  }
+
+  private async playNextNotifier(item: Song) {
+    const toast = await this.toastController.create({
+      header: 'Play next: ' + item.title,
+      duration: 10000,
+      position: 'bottom',
+      showCloseButton: true,
+      closeButtonText: 'OK',
+    });
+    return await toast.present();
   }
 
   currentItem(): any {
@@ -107,10 +125,16 @@ export class PlayerService {
     return !!this.audio ? this.audio.playing() : false;
   }
 
-  play(items: Song[], itemIndex = 0, bundle?: Bundle) {
-    this.bundle = bundle;
+  play(
+    items: Song[],
+    itemIndex = 0,
+    bundle?: Bundle,
+    type: PlayerType = 'audio',
+  ) {
     this.items = items;
     this.itemIndex = itemIndex;
+    this.bundle = bundle;
+    this.type = type;
     // play audio
     const item = items[itemIndex];
     this.playAudio([ item.contentSource ]);

@@ -386,23 +386,44 @@
 
           .bundle {
             display: flex;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: #{app-size('border')} solid #{app-color('light')};
 
             .thumbnail {
-              width: 30%;
+              width: 7rem;
+              height: 7rem;
+              
+              img {
+                width: 7rem;
+                max-width: 7rem;
+                height: 7rem;
+                border-radius: app-size('radius');
+              }
             }
 
             .info {
+              margin-left: 1rem;
 
               .title {
-
+                font-weight: 700;
+                margin-top: 0;
               }
+
               .author {
-
+                color: app-color('medium');
               }
-              .meta {
 
+              .meta {
+                margin-top: 1rem;
+
+                .view {
+                  @include button-gradient('primary');
+                  color: #FFF;
+                }
               }
             }
+
           }
 
           .songs {

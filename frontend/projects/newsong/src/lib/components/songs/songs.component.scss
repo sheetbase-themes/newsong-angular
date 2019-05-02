@@ -22,6 +22,7 @@
       height: 3rem;
       
       img {
+        transition: .3s all ease;
         width: 3rem;
         max-width: 3rem;
         height: 3rem;
@@ -70,6 +71,27 @@
         }
         .playing {
           @include button-gradient($key: 'light', $size: 'small');
+        }
+      }
+    }
+
+    &:hover {
+
+      .thumbnail {
+
+        img {
+          @keyframes spin {
+            from {
+              transform:rotate(0deg);
+            }
+            to {
+              transform:rotate(360deg);
+            }
+          }
+          animation-name: spin;
+          animation-duration: 3s;
+          animation-iteration-count: infinite;
+          animation-timing-function: linear;
         }
       }
     }

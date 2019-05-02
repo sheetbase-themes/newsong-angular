@@ -114,7 +114,7 @@
               <div class="info">
                 <h3 class="title">{{ player.bundle?.title }}</h3>
                 <div class="author">{{ player.bundle?.author }}</div>
-                <div class="meta">
+                <div class="meta" *ngIf="player.type!=='radio'">
                   <button class="view">View</button>
                 </div>
               </div>

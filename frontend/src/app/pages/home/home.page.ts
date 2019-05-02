@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 import {
   Post as Song,
@@ -21,6 +22,7 @@ export class HomePage implements OnInit {
   videos: Video[];
 
   constructor(
+    private alertController: AlertController,
     private dataService: DataService,
     private appDataService: AppDataService,
     public appService: AppService,
@@ -32,6 +34,7 @@ export class HomePage implements OnInit {
     // songs
     this.appDataService.songs().subscribe(songs => {
       this.songs = songs;
+      setTimeout(() => this.askForRadio(), 1000);
     });
     // bundles
     this.appDataService.bundles().subscribe(bundles => {
@@ -43,6 +46,34 @@ export class HomePage implements OnInit {
     });
     // set meta
     this.nav.setMeta();
+  }
+
+  async askForRadio() {
+    const alert = await this.alertController.create({
+      header: 'Radio',
+      message: 'Play today radio now?',
+      buttons: [
+        {
+          text: 'Cancel'
+        },
+        {
+          text: 'Play radio',
+          handler: () => this.playRadio(),
+        },
+      ],
+    });
+    return await alert.present();
+  }
+
+  playRadio() {
+    const radioBundle: Bundle = {
+      $key: '__radio__',
+      title: 'My Radio!',
+      author: 'By Me' as any,
+      thumbnail: 'https://img.icons8.com/dusk/320/000000/radio-tower.png',
+    };
+    // TODO: implement radio algorithm
+    return this.player.play(this.songs, 0, radioBundle, 'radio');
   }
 
 }

@@ -22,6 +22,7 @@
       height: 5rem;
       
       img {
+        transition: .3s all ease;
         width: 5rem;
         max-width: 5rem;
         height: 5rem;
@@ -87,6 +88,16 @@
         }
         .playing {
           @include button-gradient($key: 'light', $size: 'small');
+        }
+      }
+    }
+
+    &:hover {
+
+      .thumbnail {
+
+        img {
+          transform: scale(1.1);
         }
       }
     }
