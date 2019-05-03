@@ -10,6 +10,7 @@ import {
   SongsComponentModule,
   VideosComponentModule,
   BundlesComponentModule,
+  PostsComponentModule,
   ContactComponentModule,
 } from 'newsong';
 
@@ -32,6 +33,7 @@ import { HomePage } from './home.page';
     SongsComponentModule,
     VideosComponentModule,
     BundlesComponentModule,
+    PostsComponentModule,
     ContactComponentModule,
     ComponentsModule,
   ],

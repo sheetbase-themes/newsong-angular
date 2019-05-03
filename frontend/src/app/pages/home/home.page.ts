@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 
 import {
+  Post,
   Post as Song,
   Post as Bundle,
   Post as Video,
+  Message,
 } from '@sheetbase/models';
 import { AppService, NavService, DataService } from '@sheetbase/angular';
 
@@ -20,6 +22,7 @@ export class HomePage implements OnInit {
   songs: Song[];
   bundles: Bundle[];
   videos: Video[];
+  posts: Post[];
 
   constructor(
     private alertController: AlertController,
@@ -44,8 +47,16 @@ export class HomePage implements OnInit {
     this.appDataService.videos().subscribe(videos => {
       this.videos = videos;
     });
+    // posts
+    this.dataService.posts().subscribe(posts => {
+      this.posts = posts;
+    });
     // set meta
     this.nav.setMeta();
+  }
+
+  async sendMessage(message: Message) {
+    await this.dataService.addMessageExtra(message);
   }
 
   async askForRadio() {

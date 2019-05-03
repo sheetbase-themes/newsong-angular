@@ -25,12 +25,13 @@
 
       <newsong-songs
         [songs]="songs"
+        (view)="nav.navigate(['/song', $event.$key], { song: $event })"
         (play)="player.play(songs, $event)"
       ></newsong-songs>
 
     </section>
 
-    <section class="bundles" padding>
+    <section class="bundles" *ngIf="!!bundles" padding>
 
       <newsong-title
         title="Playlists"
@@ -38,12 +39,13 @@
 
       <newsong-bundles
         [bundles]="bundles"
+        (view)="nav.navigate(['/', $event.type, $event.$key], { bundle: $event })"
         (play)="player.play($event.meta['songs'], 0, $event)"
       ></newsong-bundles>
 
     </section>
 
-    <section class="videos" padding>
+    <section class="videos" *ngIf="!!videos" padding>
 
       <newsong-title
         title="Videos"
@@ -51,7 +53,21 @@
 
       <newsong-videos
         [videos]="videos"
+        (view)="nav.navigate(['/video', $event.$key], { video: $event })"
       ></newsong-videos>
+
+    </section>
+
+    <section class="posts" *ngIf="!!posts" padding>
+
+      <newsong-title
+        title="Posts"
+      ></newsong-title>
+
+      <newsong-posts
+        [posts]="posts"
+        (view)="nav.navigate(['/post', $event.$key], { post: $event })"
+      ></newsong-posts>
 
     </section>
 

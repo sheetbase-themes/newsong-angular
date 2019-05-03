@@ -1,0 +1,244 @@
+@import '../../theming/index.scss';
+
+.posts {
+  @include list;
+
+  .post {
+    width: 100%;
+    margin: 1rem 0;
+    
+    & > a {
+      width: 100%;
+      display: flex;
+      color: app-color('dark');
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .thumbnail {
+      width: 5rem;
+      height: 5rem;
+      
+      img {
+        transition: .3s all ease;
+        width: 5rem;
+        max-width: 5rem;
+        height: 5rem;
+        border-radius: app-size('radius');
+      }
+    }
+
+    .content {
+      flex-grow: 1;
+      padding-left: 1rem;
+
+      .title {
+        margin-top: 0;
+        margin-bottom: .5rem;
+        font-size: 1.05rem;
+        font-weight: bold;
+      }
+
+      .excerpt {
+        display: none;
+      }
+
+      .meta {
+
+        strong {
+          font-weight: normal;
+          font-size: .9rem;
+        }
+        span {
+          color: app-color('medium');
+          font-size: .8rem;
+        }
+      }
+    }
+  }
+
+  /*
+   * layout
+   */
+
+  &.minilist {
+
+    .post {
+
+      .thumbnail {
+        display: none;
+      }
+
+      .content {
+        padding-left: 0;
+      }
+    }
+  }
+
+  // default
+  // &.list {}
+
+  &.hugelist {
+
+    .post {
+      margin: 2rem 0;
+
+      .thumbnail {
+        display: block;
+        order: 2;
+        max-width: 9rem;
+        min-width: 5rem;
+      }
+
+      .content {
+        order: 1;
+        padding-left: 0;
+
+        .title {
+          font-size: 1.3rem;
+        }
+
+        .excerpt {
+          display: block;
+          font-size: 1rem;
+          color: app-color('medium');
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+
+  &.tiles {
+    @include list-flex;
+ 
+    @media (min-width: 768px) {
+      .post {
+        @include item-flex(2, .5rem);
+      }
+    }
+
+    @media (min-width: 992px) {
+      .post {
+        @include item-flex(3, .5rem);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .post {
+        @include item-flex(4, .5rem);
+      }
+    }
+  }
+  
+  &.thumbnails {
+    @include list-flex;
+
+    .post {
+
+      & > a {
+        display: block;
+      }
+
+      .thumbnail {
+        border-radius: #{app-size('radius')} #{app-size('radius')} 0 0;
+        overflow: hidden;
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        max-height: 10rem;
+        
+        img {
+          transition: all .5s ease;
+          border-radius: #{app-size('radius')} #{app-size('radius')} 0 0;
+          width: 100%;
+          
+          &:hover {
+            transform: scale(1.3);
+          }
+        }
+      }
+
+      .content {
+
+        .title {
+          font-size: 1.3rem;
+          margin-top: 1rem;
+          margin-bottom: .5rem;
+        }
+  
+        .excerpt {
+          display: block;
+          font-size: 1rem;
+          color: app-color('medium');
+          margin-bottom: 1rem;
+        }
+      }
+    }
+
+    @media (min-width: 576px) {
+      .post {
+        @include item-flex(2, .25rem);
+      }
+    }
+  
+    @media (min-width: 768px) {
+      .post {
+        @include item-flex(3, .5rem);
+      }
+    }
+  
+    @media (min-width: 992px) {
+      .post {
+        @include item-flex(4, .5rem);
+      }
+    }
+  
+    @media (min-width: 1200px) {
+      .post {
+        @include item-flex(5, .5rem);
+      }
+    }
+  }
+
+}
+
+.skeleton {
+  @include list;
+
+  .item {
+    display: flex;
+    margin-bottom: 1rem;
+
+    .thumbnail {
+      width: 5rem;
+      height: 5rem;
+      border-radius: app-size('radius');
+      
+      @include skeleton-item;
+    }
+    
+    .content {
+      padding: .5rem 1rem 1rem;
+      
+      &::before, &::after {
+        border-radius: app-size('radius');
+        content: '';
+        display: block;
+        height: 1rem;
+        margin: 0 0 .5rem;
+
+        @include skeleton-item;
+      }
+      &::before {
+        width: 10rem;
+      }
+      &::after {
+        width: 7rem;
+      }
+    }
+
+  }
+
+}

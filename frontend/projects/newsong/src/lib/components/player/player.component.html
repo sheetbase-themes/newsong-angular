@@ -123,7 +123,7 @@
             <div class="songs">
               <newsong-songs
                 [songs]="player.items"
-                (play)="player.play(player.items, $event, player.bundle)"
+                (play)="player.play(player.items, $event, player.bundle, player.type)"
               ></newsong-songs>
             </div>
 

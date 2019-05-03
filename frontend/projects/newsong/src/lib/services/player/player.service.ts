@@ -7,7 +7,7 @@ import {
   Post as Bundle,
 } from '@sheetbase/models';
 
-import { PlayerType } from '../../types';
+type PlayerType = 'audio' | 'radio' | 'video';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +55,8 @@ export class PlayerService {
   private playAudio(urls: string[]) {
     this.audio.fade(1, 0, 1000);
     setTimeout(() => {
+      this.audio.stop();
+      // replace audio
       this.audio = new Howl({
         src: urls,
         onloaderror: () => this.available = false,
@@ -92,9 +94,7 @@ export class PlayerService {
     }
     // continue steping
     if (this.audio.playing()) {
-      setTimeout(() => {
-        this.playingStep();
-      }, 1000);
+      setTimeout(() => this.playingStep(), 1000);
     }
   }
 
@@ -137,18 +137,16 @@ export class PlayerService {
     this.type = type;
     // play audio
     const item = items[itemIndex];
-    this.playAudio([ item.contentSource ]);
+    return this.playAudio([ item.contentSource ]);
   }
 
   togglePlay() {
     if (!this.audio.playing()) {
-      this.audio.fade(0, 1, 300);
+      this.audio.fade(0, 1, 500);
       this.audio.play();
     } else {
-      this.audio.fade(1, 0, 300);
-      setTimeout(() => {
-        this.audio.pause();
-      }, 300);
+      this.audio.fade(1, 0, 500);
+      setTimeout(() => this.audio.pause(), 500);
     }
   }
 

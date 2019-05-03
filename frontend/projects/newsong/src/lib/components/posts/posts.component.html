@@ -1,3 +1,32 @@
-<p>
-  posts works!
-</p>
+<ul class="posts" *ngIf="!!posts">
+  <li class="post" *ngFor="let item of posts">
+
+    <a [href]="'/post/' + item.$key" (click)="view.emit(item); false;">
+
+      <div class="thumbnail">
+        <img [src]="item.thumbnail">
+      </div>
+  
+      <div class="content">
+
+        <h3 class="title" [innerHtml]="item.title"></h3>
+        <div class="excerpt">{{ item.excerpt }}</div>
+
+        <div class="meta">
+          <div><strong>{{ item.author }}</strong></div>
+          <div><span>{{ dateService.relative(item.createdAt) }}</span> &middot; <span>{{ item.duration }} min read</span></div>
+        </div>
+
+      </div>
+
+    </a>
+
+  </li>
+</ul>
+
+<ul class="skeleton" *ngIf="!posts">
+  <li class="item" *ngFor="let item of [1, 2, 3]">
+    <div class="thumbnail"></div>
+    <div class="content"></div>
+  </li>
+</ul>

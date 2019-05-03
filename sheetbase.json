@@ -15,10 +15,10 @@
 				"tags": "102",
 				"pages": "103",
 				"posts": "104",
-				"products": "107",
 				"songs": "201",
 				"bundles": "202",
-				"videos": "203"
+				"videos": "203",
+				"products": "107"
 			}
 		}
 	},
@@ -57,7 +57,6 @@
 		"tags",
 		"pages",
 		"posts",
-		"products",
 		{
 			"from": "posts",
 			"name": "songs",
@@ -75,7 +74,8 @@
 			"name": "videos",
 			"gid": "203",
 			"public": true
-		}
+		},
+		"products"
 	],
 	"deployment": {
 		"provider": "github",

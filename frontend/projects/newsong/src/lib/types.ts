@@ -1,1 +1,0 @@
-export type PlayerType = 'audio' | 'radio' | 'video';

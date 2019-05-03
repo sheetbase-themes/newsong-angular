@@ -1,5 +1,6 @@
 {
   "items": [
+    "contact",
     {
       "from": "categories",
       "location": "category",
@@ -21,6 +22,42 @@
     {
       "from": "posts",
       "location": "post",
+      "changefreq": "daily",
+      "priority": "1.0"
+    },
+    {
+      "from": "songs",
+      "location": "song",
+      "changefreq": "daily",
+      "priority": "1.0"
+    },
+    {
+      "from": "bundles",
+      "location": "bundle",
+      "changefreq": "daily",
+      "priority": "1.0",
+      "segments": [
+        {
+          "where": "type",
+          "equal": "album",
+          "location": "album"
+        },
+        {
+          "where": "type",
+          "equal": "playlist",
+          "location": "playlist"
+        }
+      ]
+    },
+    {
+      "from": "videos",
+      "location": "video",
+      "changefreq": "daily",
+      "priority": "1.0"
+    },
+    {
+      "from": "products",
+      "location": "product",
       "changefreq": "daily",
       "priority": "1.0"
     }

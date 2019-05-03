@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+import { Post } from '@sheetbase/models';
+import { DateService } from '@sheetbase/angular';
 
 @Component({
   selector: 'newsong-posts',
@@ -7,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit {
 
-  constructor() { }
+  @Input() posts: Post;
+  @Output() view: EventEmitter<Post> = new EventEmitter();
+
+  constructor(
+    public dateService: DateService,
+  ) { }
 
   ngOnInit() {}
 

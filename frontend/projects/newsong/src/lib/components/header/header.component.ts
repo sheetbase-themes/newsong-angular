@@ -9,13 +9,15 @@ import { Link, NavService } from '@sheetbase/angular';
 })
 export class HeaderComponent implements OnInit {
 
+  showMenu = false;
+
   @Input() nav: NavService;
   @Input() name: string;
   @Input() socials: Link[];
   @Input() links: Link[];
+  @Input() ctaText = 'Donate';
   @Output() goHome: EventEmitter<void> = new EventEmitter();
-
-  showMenu = false;
+  @Output() doCTA: EventEmitter<void> = new EventEmitter();
 
   constructor() { }
 
