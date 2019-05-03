@@ -115,7 +115,7 @@
                 <h3 class="title">{{ player.bundle?.title }}</h3>
                 <div class="author">{{ player.bundle?.author }}</div>
                 <div class="meta" *ngIf="player.type!=='radio'">
-                  <button class="view">View</button>
+                  <button class="view" (click)="showDetail=false; goBundle.emit(player.bundle)">View</button>
                 </div>
               </div>
             </div>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
+import { Post as Bundle } from '@sheetbase/models';
 
 import { PlayerService } from '../../services/player/player.service';
 
@@ -11,6 +13,8 @@ export class PlayerComponent implements OnInit {
 
   showDetail = false;
   tab = 'content';
+
+  @Output() goBundle: EventEmitter<Bundle> = new EventEmitter();
 
   constructor(
     public player: PlayerService,

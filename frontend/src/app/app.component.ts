@@ -29,8 +29,8 @@ export class AppComponent {
     private router: Router,
     private sheetbaseService: SheetbaseService,
     private appService: AppService,
-    public navService: NavService,
     private dateService: DateService,
+    public navService: NavService,
   ) {
     this.initializeApp();
   }

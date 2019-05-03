@@ -1,9 +1,40 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>song</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-<ion-content padding>
+<ion-content>
+
+  <main padding>
+    
+    <div *ngIf="notFound">
+      <sheetbase-oops (goHome)="nav.navigate(['/'])"></sheetbase-oops>
+    </div>
+
+    <div *ngIf="!notFound && !song">
+      <sheetbase-skeleton></sheetbase-skeleton>
+    </div>
+
+    <section class="song" *ngIf="!notFound && !!song">
+
+      <newsong-song
+        [song]="song"
+        (play)="playSong()"
+      ></newsong-song>
+
+    </section>
+
+    <section class="suggested" *ngIf="!notFound && !!suggestedSongs && suggestedSongs.length > 0">
+
+      <newsong-title
+        title="Similar songs"
+      ></newsong-title>
+
+      <newsong-songs
+        [songs]="suggestedSongs"
+        (view)="nav.navigate(['/song', $event.$key], { song: $event })"
+        (play)="player.play(suggestedSongs, $event)"
+      ></newsong-songs>
+
+    </section>
+
+  </main>
 
 </ion-content>

@@ -60,12 +60,17 @@
           }
         }
 
-        .description {
+        .count {
           color: app-color('medium');
           font-size: .8rem;
-          display: none;
+          margin-left: .5rem;
         }
-
+      }
+      
+      .description {
+        color: app-color('medium');
+        font-size: .8rem;
+        display: none;
       }
 
       .author {

@@ -1,0 +1,54 @@
+@import '../../theming/index.scss';
+
+.song {
+
+  .head {
+    display: flex;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: #{app-size('border')} solid #{app-color('light')};
+
+    .thumbnail {
+      width: 4rem;
+      height: 4rem;
+      
+      img {
+        width: 4rem;
+        max-width: 4rem;
+        height: 4rem;
+        border-radius: 100%;
+      }
+    }
+
+    .info {
+      margin-left: 1rem;
+
+      .title {
+        font-weight: 700;
+        margin-top: 0;
+      }
+
+      .author {
+        color: app-color('medium');
+      }
+
+      .buttons {
+        margin-top: 1rem;
+
+        .listen {
+          @include button-gradient($key: 'primary');
+          color: #FFF;
+        }
+        .playing {
+          @include button-gradient($key: 'light');
+        }
+      }
+    }
+
+  }
+
+  .body {
+
+  }
+
+}

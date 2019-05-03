@@ -87,10 +87,10 @@ export class PlayerService {
       this.playNextNotifier(this.items[nextIndex]);
       // play next song
       setTimeout(() => {
-        this.play(this.items, nextIndex, this.bundle);
+        this.play(this.items, nextIndex, this.bundle, this.type);
         // reset checker
         this.nextItemQueued = false;
-      }, 13000);
+      }, 11000);
     }
     // continue steping
     if (this.audio.playing()) {
@@ -151,11 +151,11 @@ export class PlayerService {
   }
 
   togglePrev() { // NOTE: only for type of list
-    return this.play(this.items, this.itemIndex - 1, this.bundle);
+    return this.play(this.items, this.itemIndex - 1, this.bundle, this.type);
   }
 
   toggleNext() {
-    return this.play(this.items, this.itemIndex + 1, this.bundle);
+    return this.play(this.items, this.itemIndex + 1, this.bundle, this.type);
   }
 
   seek() {

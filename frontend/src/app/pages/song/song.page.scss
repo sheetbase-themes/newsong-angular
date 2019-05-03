@@ -1,0 +1,18 @@
+@import '../../../../projects/newsong/src/lib/theming/index.scss';
+
+main {
+  // 51px = header | 68px = player
+  min-height: calc(100vh - 51px - 68px);
+
+  .song {
+
+  }
+
+  .suggested {
+
+    .actions {
+      
+    }
+  }
+
+}

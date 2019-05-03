@@ -2,5 +2,7 @@
   <ion-router-outlet></ion-router-outlet>
 
   <!-- player -->
-  <newsong-player></newsong-player>
+  <newsong-player
+    (goBundle)="navService.navigate(['/', $event.type, $event.$key])"
+  ></newsong-player>
 </ion-app>

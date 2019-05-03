@@ -62,7 +62,7 @@ export class HomePage implements OnInit {
   async askForRadio() {
     const alert = await this.alertController.create({
       header: 'Radio',
-      message: 'Play today radio now?',
+      message: 'Play today radio?',
       buttons: [
         {
           text: 'Cancel'

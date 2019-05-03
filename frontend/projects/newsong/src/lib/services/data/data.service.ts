@@ -4,6 +4,7 @@ import { flatMap } from 'rxjs/operators';
 
 import { Filter } from '@sheetbase/client';
 import {
+  Post,
   Post as Song,
   Post as Bundle,
   Post as Video,
@@ -66,6 +67,17 @@ export class DataService {
   clearSong(item: Song) {
     return this.Database.clearCacheItem('songs', item);
   }
+  songsByRelated(item: Song) {
+    const [ category ] = Object.keys(item.categories || {});
+    const [ tag ] = Object.keys(item.tags || {});
+    return this.songs((song: Song) => (
+      song.$key !== item.$key &&
+      (
+        (!!category && !!song.categories && !!song.categories[category]) ||
+        (!!tag && !!song.tags && !!song.tags[tag])
+      )
+    ));
+  }
   songsByBundle(bundle: Bundle) {
     return this.songs((song: Song) => (
       !!song.meta &&
@@ -99,6 +111,17 @@ export class DataService {
   clearBundle(item: Bundle) {
     return this.Database.clearCacheItem('bundles', item);
   }
+  bundlesByRelated(item: Bundle) {
+    const [ category ] = Object.keys(item.categories || {});
+    const [ tag ] = Object.keys(item.tags || {});
+    return this.bundles((bundle: Bundle) => (
+      bundle.$key !== item.$key &&
+      (
+        (!!category && !!bundle.categories && !!bundle.categories[category]) ||
+        (!!tag && !!bundle.tags && !!bundle.tags[tag])
+      )
+    ));
+  }
 
   // album
   albums(filter?: Filter, offline = true, cacheTime = 1440) {
@@ -112,6 +135,17 @@ export class DataService {
   }
   clearAlbum(item: Bundle) {
     return this.clearBundle(item);
+  }
+  albumsByRelated(item: Bundle) {
+    const [ category ] = Object.keys(item.categories || {});
+    const [ tag ] = Object.keys(item.tags || {});
+    return this.albums((album: Bundle) => (
+      album.$key !== item.$key &&
+      (
+        (!!category && !!album.categories && !!album.categories[category]) ||
+        (!!tag && !!album.tags && !!album.tags[tag])
+      )
+    ));
   }
 
   // playlist
@@ -127,6 +161,17 @@ export class DataService {
   clearPlaylist(item: Bundle) {
     return this.clearBundle(item);
   }
+  playlistsByRelated(item: Bundle) {
+    const [ category ] = Object.keys(item.categories || {});
+    const [ tag ] = Object.keys(item.tags || {});
+    return this.playlists((playlist: Bundle) => (
+      playlist.$key !== item.$key &&
+      (
+        (!!category && !!playlist.categories && !!playlist.categories[category]) ||
+        (!!tag && !!playlist.tags && !!playlist.tags[tag])
+      )
+    ));
+  }
 
   // video
   videos(filter?: Filter, offline = true, cacheTime = 1440) {
@@ -140,6 +185,17 @@ export class DataService {
   }
   clearVideo(item: Video) {
     return this.Database.clearCacheItem('videos', item);
+  }
+  videosByRelated(item: Video) {
+    const [ category ] = Object.keys(item.categories || {});
+    const [ tag ] = Object.keys(item.tags || {});
+    return this.videos((video: Video) => (
+      video.$key !== item.$key &&
+      (
+        (!!category && !!video.categories && !!video.categories[category]) ||
+        (!!tag && !!video.tags && !!video.tags[tag])
+      )
+    ));
   }
 
 }

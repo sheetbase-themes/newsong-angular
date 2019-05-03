@@ -1,11 +1,6 @@
 @import '../../../../projects/newsong/src/lib/theming/index.scss';
 
 main {
-  // 4rem = margin | 65px = header height | 127px = footer height
-  min-height: calc(100vh - 4rem - 65px - 127px);
-
-  @media (min-width: 768px) {
-    margin-bottom: 4rem;
-  }
-
+  // 51px = header | 68px = player
+  min-height: calc(100vh - 51px - 68px);
 }

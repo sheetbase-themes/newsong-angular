@@ -1,3 +1,28 @@
-<p>
-  song works!
-</p>
+<div class="song">
+
+  <div class="head">
+    
+    <div class="thumbnail">
+      <img [src]="song.thumbnail" [alt]="song.title">
+    </div>
+    <div class="info">
+      <h3 class="title">{{ song.title }}</h3>
+      <div class="author">{{ song.author }}</div>
+      <div class="buttons">
+        <button class="listen"
+          *ngIf="!!song.contentSource && player.currentItem()?.$key !== song.$key"
+          (click)="play.emit(); $event.stopPropagation(); false;"
+        >Listen</button>
+        <button class="playing" *ngIf="player.currentItem()?.$key === song.$key">Playing</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="body">
+
+    <article [innerHtml]="song.content"></article>
+
+  </div>
+
+</div>
