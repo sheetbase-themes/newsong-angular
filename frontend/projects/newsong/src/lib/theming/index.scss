@@ -15,8 +15,66 @@
       background-position: $shineend;
     }
   }
-
   background-image: linear-gradient(90deg, $basecolor $startpos, $shinecolor $middlepos, $basecolor $endpos);
   background-size: $bgsize;
   animation: shine $shineduration infinite ease-out;
+}
+
+@mixin lyric-pretty {
+  
+  .block {
+    font-family: app-type('body');
+    margin-bottom: 1rem;
+    font-size: 1.2rem !important;
+    line-height: 1.5 !important;
+    font-weight: 400;
+  
+    .caption {
+      color: #CCC;
+    }
+  
+    .chord, .extra, .dash, .offset {
+      display: none;
+    }
+  }
+
+}
+
+@mixin lyric-chords {
+  
+  .block {
+    position: relative;
+    margin-bottom: 1.5rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    line-height: 3;
+    font-weight: 400;
+
+    .caption {
+      color: #CCC;
+    }
+  
+    .chord {
+      position: relative;
+      display: inline-block;
+      overflow: visible;
+      width: 0;
+  
+      em {
+        font-style: normal;
+        width: auto;
+        overflow: visible;
+        position: absolute;
+        top: -3rem;
+        left: -.7rem;
+        display: inline-block;
+        overflow: visible;
+        font-weight: bold;
+        color: app-color('primary');
+      }
+    }
+  
+    .dash {
+      color: #EFEFEF;
+    }
+  }
 }

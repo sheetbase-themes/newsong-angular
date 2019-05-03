@@ -94,10 +94,9 @@
       <div class="body">
   
         <div class="main" *ngIf="tab==='content'">
-          <article class="content"
-            *ngIf="!!player.currentItem()?.content"
-            [innerHtml]="player.currentItem()?.content"
-          ></article>
+          <div class="content" *ngIf="!!player.currentItem()?.content">
+            <newsong-lyric [song]="player.currentItem()"></newsong-lyric>
+          </div>
           <div class="no-content" *ngIf="!player.currentItem()?.content">
             <img src="https://img.icons8.com/android/64/eeeeee/music.png">
           </div>

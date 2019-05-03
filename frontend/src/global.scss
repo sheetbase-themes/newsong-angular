@@ -10,6 +10,16 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
+@import '../projects/newsong/src/lib/theming/index.scss';
+
 ion-content {
   --padding-bottom: 64px; // player height
+}
+
+article.lyric-pretty {
+  @include lyric-pretty;
+}
+
+article.lyric-chords {
+  @include lyric-chords;
 }

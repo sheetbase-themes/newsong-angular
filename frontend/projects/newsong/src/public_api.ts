@@ -18,6 +18,7 @@ export { BundlesComponentModule } from './lib/components/bundles/bundles.module'
 export { VideoComponentModule } from './lib/components/video/video.module';
 export { VideosComponentModule } from './lib/components/videos/videos.module';
 export { TitleComponentModule } from './lib/components/title/title.module';
+export { LyricComponentModule } from './lib/components/lyric/lyric.module';
 
 export { DataService } from './lib/services/data/data.service';
 export { PlayerService } from './lib/services/player/player.service';

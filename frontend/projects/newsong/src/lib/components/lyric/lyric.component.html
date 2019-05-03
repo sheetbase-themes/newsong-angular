@@ -1,0 +1,27 @@
+<div class="lyric">
+
+  <div class="tabs">
+
+    <button (click)="tab='text'" [ngClass]="{ 'active': tab==='text' }">Lyric</button>
+    <button (click)="tab='chord'" [ngClass]="{ 'active': tab==='chord' }">Chords</button>
+    <button (click)="tab='sheet'" [ngClass]="{ 'active': tab==='sheet' }" *ngIf="!!song.image">Sheet</button>
+
+  </div>
+
+  <div class="content">
+
+    <div class="text" *ngIf="tab==='text'">
+      <article class="lyric-pretty" [innerHtml]="song.content"></article>
+    </div>
+    
+    <div class="chord" *ngIf="tab==='chord'">
+      <article class="lyric-chords" [innerHtml]="song.content"></article>
+    </div>
+
+    <div class="sheet" *ngIf="tab==='sheet'">
+      <img [src]="song.image" [alt]="'Sheet ' + song.title">
+    </div>
+
+  </div>
+
+</div>
