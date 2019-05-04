@@ -122,6 +122,7 @@
             <div class="songs">
               <newsong-songs
                 [songs]="player.items"
+                (view)="showDetail=false; goSong.emit($event)"
                 (play)="player.play(player.items, $event, player.bundle, player.type)"
               ></newsong-songs>
             </div>

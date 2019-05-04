@@ -363,13 +363,6 @@
       }
       
       .body {
-        width: 100%;
-        height: 100%;
-        overflow-y: scroll;
-
-        .content {
-          margin-bottom: 68px;
-        }
 
         .no-content {
           width: 100%;
@@ -379,14 +372,15 @@
           justify-content: center;
         }
 
-        .main {
+        .main, .playlist {          
+          position: relative;
           width: 100%;
-          padding: 1rem 1rem 3rem;
+          height: calc(100vh - 68px - 48px);
+          overflow-y: scroll;
+          padding: 1rem;
         }
         
         .playlist {
-          width: 100%;
-          padding: 1rem 1rem 3rem;
 
           .bundle {
             display: flex;

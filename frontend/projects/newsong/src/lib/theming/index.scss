@@ -23,9 +23,10 @@
 @mixin lyric-pretty {
   
   .block {
+    position: relative;
     font-family: app-type('body');
     margin-bottom: 1rem;
-    font-size: 1.2rem !important;
+    font-size: 1.1rem !important;
     line-height: 1.5 !important;
     font-weight: 400;
   
@@ -44,8 +45,8 @@
   
   .block {
     position: relative;
-    margin-bottom: 1.5rem;
     font-family: "Lucida Console", Monaco, monospace;
+    margin-bottom: 1.5rem;
     line-height: 3;
     font-weight: 400;
 
@@ -55,17 +56,14 @@
   
     .chord {
       position: relative;
-      display: inline-block;
-      overflow: visible;
-      width: 0;
+      display: inline;
   
       em {
         font-style: normal;
         width: auto;
-        overflow: visible;
         position: absolute;
-        top: -3rem;
-        left: -.7rem;
+        top: -2.2rem;
+        left: -.6rem;
         display: inline-block;
         overflow: visible;
         font-weight: bold;

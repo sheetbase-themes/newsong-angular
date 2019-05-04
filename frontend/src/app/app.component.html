@@ -3,6 +3,7 @@
 
   <!-- player -->
   <newsong-player
-    (goBundle)="navService.navigate(['/', $event.type, $event.$key])"
+    (goSong)="navService.navigate(['/song', $event.$key], { song: $event })"
+    (goBundle)="navService.navigate(['/', $event.type, $event.$key], { bundle: $event })"
   ></newsong-player>
 </ion-app>
