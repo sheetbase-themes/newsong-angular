@@ -3,17 +3,17 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
+
 import { OopsComponentModule, SkeletonComponentModule } from '@sheetbase/angular';
-import { TitleComponentModule, PostsComponentModule, PostComponentModule } from 'newsong';
+import { TitleComponentModule, BundlesComponentModule, BundleComponentModule } from 'newsong';
 
 import { ComponentsModule } from '../../components/components.module';
-
-import { PostPage } from './post.page';
+import { BundlePage } from './bundle.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: PostPage
+    component: BundlePage
   }
 ];
 
@@ -22,13 +22,13 @@ const routes: Routes = [
     CommonModule,
     IonicModule,
     RouterModule.forChild(routes),
-    TitleComponentModule,
-    PostsComponentModule,
-    PostComponentModule,
     OopsComponentModule,
     SkeletonComponentModule,
+    TitleComponentModule,
+    BundlesComponentModule,
+    BundleComponentModule,
     ComponentsModule,
   ],
-  declarations: [PostPage]
+  declarations: [BundlePage]
 })
-export class PostPageModule {}
+export class BundlePageModule {}

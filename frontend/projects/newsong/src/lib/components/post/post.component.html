@@ -1,3 +1,50 @@
-<p>
-  post works!
-</p>
+<div class="post">  
+  
+  <div class="head">
+    
+    <div class="image" *ngIf="!!post.image" [ngStyle]="{'background-image': 'url(' + post.image + ')'}"></div>
+  
+    <ul class="breadcrumb">
+      <li><a href="/" (click)="goHome.emit(); false;">Home</a></li>
+      <li><a href="/posts" (click)="goPosts.emit(); false;">Posts</a></li>
+    </ul>
+    
+  </div>
+  
+  <div class="body">
+    
+    <div class="info">
+
+      <ul class="categories" *ngIf="!!post?.categories">
+        <li class="category" *ngFor="let item of post?.categories | o2a"><a [href]="'/danh-muc/' + item.$key" (click)="goCategory.emit(item.$key); false;">{{ item.value }}</a></li>
+      </ul>
+    
+      <h1 class="title">{{ post.title }}</h1>
+      <div class="excerpt">{{ post.excerpt }}</div>
+
+    </div>
+
+    <div class="content">
+      <newsong-content [content]="post.content"></newsong-content>
+    </div>
+    
+  </div>
+
+  <div class="foot">
+
+    <ul class="tags" *ngIf="!!post?.tags">
+      <li class="tag" *ngFor="let item of post?.tags | o2a"><a [href]="'/tag/' + item.$key" (click)="goTag.emit(item.$key); false;">{{ item.value }}</a></li>
+    </ul>
+
+    <div class="actions">
+      <a class="facebook" [href]="'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl()" target="_blank">
+        <img src="https://unpkg.com/@mdi/svg@3.3.92/svg/facebook.svg" alt="Facebook">
+      </a>
+      <a class="twitter" [href]="'https://twitter.com/home?status=' + shareUrl()" target="_blank">
+        <img src="https://unpkg.com/@mdi/svg@3.3.92/svg/twitter.svg" alt="Facebook">
+      </a>    
+    </div>
+
+  </div>
+
+</div>

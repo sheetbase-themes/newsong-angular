@@ -1,3 +1,25 @@
-<p>
-  video works!
-</p>
+<div class="video">
+
+  <div class="head">
+
+    <youtube-player class="fluid-video"
+      [videoId]="videoId()"
+      (ready)="setPlayer($event)"
+      (change)="onStateChange($event)"
+    ></youtube-player>
+
+  </div>
+
+  <div class="body">
+    
+    <div class="info">
+
+      <h1 class="title">{{ video.title }}</h1>
+      <div class="author">{{ video.author }}</div>
+      <div class="excerpt">{{ video.excerpt }}</div>
+
+    </div>
+
+  </div>
+
+</div>

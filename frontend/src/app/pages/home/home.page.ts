@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 
 import {
   Post,
@@ -8,7 +7,7 @@ import {
   Post as Video,
   Message,
 } from '@sheetbase/models';
-import { AppService, NavService, DataService } from '@sheetbase/angular';
+import { AppService, NavService, DataService, DateService } from '@sheetbase/angular';
 
 import { DataService as AppDataService, PlayerService } from 'newsong';
 
@@ -25,9 +24,9 @@ export class HomePage implements OnInit {
   posts: Post[];
 
   constructor(
-    private alertController: AlertController,
     private dataService: DataService,
     private appDataService: AppDataService,
+    public dateService: DateService,
     public appService: AppService,
     public nav: NavService,
     public player: PlayerService,
@@ -37,7 +36,6 @@ export class HomePage implements OnInit {
     // songs
     this.appDataService.songs().subscribe(songs => {
       this.songs = songs;
-      setTimeout(() => this.askForRadio(), 1000);
     });
     // bundles
     this.appDataService.bundles().subscribe(bundles => {
@@ -59,28 +57,11 @@ export class HomePage implements OnInit {
     await this.dataService.addMessageExtra(message);
   }
 
-  async askForRadio() {
-    const alert = await this.alertController.create({
-      header: 'Radio',
-      message: 'Play today radio?',
-      buttons: [
-        {
-          text: 'Cancel'
-        },
-        {
-          text: 'Play radio',
-          handler: () => this.playRadio(),
-        },
-      ],
-    });
-    return await alert.present();
-  }
-
   playRadio() {
     const radioBundle: Bundle = {
       $key: '__radio__',
-      title: 'My Radio!',
-      author: 'By Me' as any,
+      title: 'Today Radio',
+      author: this.dateService.format(new Date()) as any,
       thumbnail: 'https://img.icons8.com/dusk/320/000000/radio-tower.png',
     };
     // TODO: implement radio algorithm

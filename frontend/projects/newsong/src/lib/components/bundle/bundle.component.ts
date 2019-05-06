@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+import {
+  Post as Song,
+  Post as Bundle,
+} from '@sheetbase/models';
+
+import { PlayerService } from '../../services/player/player.service';
 
 @Component({
   selector: 'newsong-bundle',
@@ -7,7 +14,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BundleComponent implements OnInit {
 
-  constructor() { }
+  @Input() bundle: Bundle;
+  @Output() playBundle: EventEmitter<Bundle> = new EventEmitter();
+  @Output() playSong: EventEmitter<number> = new EventEmitter();
+  @Output() goSong: EventEmitter<Song> = new EventEmitter();
+
+  constructor(
+    public player: PlayerService,
+  ) { }
 
   ngOnInit() {}
 

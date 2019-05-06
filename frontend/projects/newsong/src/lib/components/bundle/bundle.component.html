@@ -1,3 +1,26 @@
-<p>
-  bundle works!
-</p>
+<div class="bundle">
+  <div class="thumbnail">
+    <img [src]="bundle.thumbnail">
+  </div>
+  <div class="info">
+    <h3 class="title">{{ bundle.title }}</h3>
+    <div class="author">{{ bundle.author }}</div>
+    <div class="buttons">
+      <button class="listen"
+        *ngIf="player.bundle?.$key !== bundle.$key"
+        (click)="playBundle.emit(bundle)"
+      >Listen</button>
+      <button class="playing"
+        *ngIf="player.bundle?.$key === bundle.$key"
+      >Playing</button>
+    </div>
+  </div>
+</div>
+
+<div class="songs">
+  <newsong-songs
+    [songs]="bundle.meta['songs']"
+    (view)="goSong.emit($event)"
+    (play)="playSong.emit($event)"
+  ></newsong-songs>
+</div>

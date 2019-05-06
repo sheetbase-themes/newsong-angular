@@ -1,0 +1,38 @@
+<app-header></app-header>
+
+<ion-content>
+
+  <main padding>
+    
+    <div *ngIf="notFound">
+      <sheetbase-oops (goHome)="nav.navigate(['/'])"></sheetbase-oops>
+    </div>
+
+    <div *ngIf="!notFound && !bundle">
+      <sheetbase-skeleton></sheetbase-skeleton>
+    </div>
+
+    <section class="bundle" *ngIf="!notFound && !!bundle">
+
+      <newsong-bundle
+        [bundle]="bundle"
+      ></newsong-bundle>
+
+    </section>
+
+    <section class="suggested" *ngIf="!notFound && !!suggestedBundles && suggestedBundles.length > 0">
+
+      <newsong-title
+        title="Similar"
+      ></newsong-title>
+
+      <newsong-bundles
+        [bundles]="suggestedBundles"
+        (view)="nav.navigate(['/', $event.type, $event.$key], { bundle: $event })"
+      ></newsong-bundles>
+
+    </section>
+
+  </main>
+
+</ion-content>

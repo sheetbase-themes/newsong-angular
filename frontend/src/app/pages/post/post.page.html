@@ -1,9 +1,42 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>post</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-<ion-content padding>
+<ion-content>
+
+  <main padding>
+    
+    <div *ngIf="notFound">
+      <sheetbase-oops (goHome)="nav.navigate(['/'])"></sheetbase-oops>
+    </div>
+
+    <div *ngIf="!notFound && !post" style="padding-top: 1rem;">
+      <sheetbase-skeleton></sheetbase-skeleton>
+    </div>
+
+    <section class="post" *ngIf="!notFound && !!post">
+      
+      <newsong-post
+        [post]="post"
+        (goHome)="nav.navigate(['/'])"
+        (goPosts)="nav.navigate(['/posts'])"
+        (goCategory)="nav.navigate(['/category', $event])"
+        (goTag)="nav.navigate(['/tag', $event])"
+      ></newsong-post>
+
+    </section>
+
+    <section class="suggested" *ngIf="!notFound && !!suggestedPosts && suggestedPosts.length > 0">
+
+      <newsong-title
+        title="Similar"
+      ></newsong-title>
+
+      <newsong-posts
+        [posts]="suggestedPosts"
+        (view)="nav.navigate(['/post', $event.$key], { post: $event })"
+      ></newsong-posts>
+
+    </section>
+
+  </main>
 
 </ion-content>

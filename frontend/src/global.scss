@@ -16,10 +16,18 @@ ion-content {
   --padding-bottom: 64px; // player height
 }
 
+article.dynamic-content {
+  @include dynamic-content;    
+}
+
 article.lyric-pretty {
   @include lyric-pretty;
 }
 
 article.lyric-chords {
   @include lyric-chords;
+}
+
+.fluid-video {
+  @include fluid-video;
 }

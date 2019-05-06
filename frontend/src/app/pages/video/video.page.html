@@ -1,9 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>video</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-<ion-content padding>
+<ion-content>
+
+  <main padding>
+    
+    <div *ngIf="notFound">
+      <sheetbase-oops (goHome)="nav.navigate(['/'])"></sheetbase-oops>
+    </div>
+
+    <div *ngIf="!notFound && !video">
+      <sheetbase-skeleton></sheetbase-skeleton>
+    </div>
+
+    <section class="video" *ngIf="!notFound && !!video">
+
+      <newsong-video
+        [video]="video"
+      ></newsong-video>
+
+    </section>
+
+    <section class="suggested" *ngIf="!notFound && !!suggestedVideos && suggestedVideos.length > 0">
+
+      <newsong-title
+        title="Similar"
+      ></newsong-title>
+
+      <newsong-videos
+        [videos]="suggestedVideos"
+        (view)="nav.navigate(['/video', $event.$key], { video: $event })"
+      ></newsong-videos>
+
+    </section>
+
+  </main>
 
 </ion-content>

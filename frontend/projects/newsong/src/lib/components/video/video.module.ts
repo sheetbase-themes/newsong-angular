@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
+
 import { VideoComponent } from './video.component';
 
 @NgModule({
@@ -9,6 +11,7 @@ import { VideoComponent } from './video.component';
   ],
   imports: [
     CommonModule,
+    NgxYoutubePlayerModule,
   ],
   exports: [
     VideoComponent,

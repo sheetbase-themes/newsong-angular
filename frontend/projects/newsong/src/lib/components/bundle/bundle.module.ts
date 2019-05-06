@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { SongsComponentModule } from '../songs/songs.module';
 import { BundleComponent } from './bundle.component';
 
 @NgModule({
@@ -9,6 +10,7 @@ import { BundleComponent } from './bundle.component';
   ],
   imports: [
     CommonModule,
+    SongsComponentModule,
   ],
   exports: [
     BundleComponent,

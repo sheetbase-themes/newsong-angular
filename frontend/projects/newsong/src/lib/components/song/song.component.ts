@@ -12,7 +12,7 @@ import { PlayerService } from '../../services/player/player.service';
 export class SongComponent implements OnInit {
 
   @Input() song: Song;
-  @Output() play: EventEmitter<number> = new EventEmitter();
+  @Output() play: EventEmitter<void> = new EventEmitter();
 
   constructor(
     public player: PlayerService,

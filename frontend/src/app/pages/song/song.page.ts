@@ -34,7 +34,6 @@ export class SongPage implements OnInit {
   loadSong() {
     // load key and data
     this.songKey = this.route.snapshot.paramMap.get('songKey');
-    this.song = this.nav.get('song');
     // load data
     if (!!this.songKey) {
       this.appDataService.song(this.songKey).subscribe(song => {

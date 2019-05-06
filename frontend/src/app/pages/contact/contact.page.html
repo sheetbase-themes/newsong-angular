@@ -1,9 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>contact</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-<ion-content padding>
+<ion-content>
+
+  <main padding>
+    
+    <newsong-title
+      title="Form"
+    ></newsong-title>
+
+    <newsong-contact
+      (sendMessage)="sendMessage($event)"
+    ></newsong-contact>
+
+  </main>
 
 </ion-content>
