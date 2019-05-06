@@ -125,6 +125,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 loader
 
+ngx-youtube-player
+
 rxjs
 Apache-2.0
                                Apache License
