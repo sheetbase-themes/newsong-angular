@@ -3,4 +3,33 @@
 main {
   // 51px = header | 68px = player
   min-height: calc(100vh - 51px - 68px);
+
+  .jumbotron {
+
+  }
+
+  .songs {
+    @include max-width(576px);
+  }
+
+  .bundles {
+    @include max-width(576px);
+  }
+
+  .videos {
+    @include max-width(576px);
+  }
+
+  .posts {
+    @include max-width(576px);
+  }
+
+  .contact {
+    @include max-width(576px);
+  }
+
+  @media (min-width: 768px) {
+
+  }
+
 }

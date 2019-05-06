@@ -2,11 +2,15 @@
 
   <div class="head">
 
-    <youtube-player class="fluid-video"
-      [videoId]="videoId()"
-      (ready)="setPlayer($event)"
-      (change)="onStateChange($event)"
-    ></youtube-player>
+    <div class="player">
+
+      <youtube-player class="fluid-video"
+        [videoId]="videoId()"
+        (ready)="setPlayer($event)"
+        (change)="onStateChange($event)"
+      ></youtube-player>
+
+    </div>
 
   </div>
 

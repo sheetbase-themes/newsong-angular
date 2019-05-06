@@ -3,6 +3,7 @@
 main {
   // 51px = header | 68px = player
   min-height: calc(100vh - 51px - 68px);
+  @include max-width(768px);
 
   .bundle {
 

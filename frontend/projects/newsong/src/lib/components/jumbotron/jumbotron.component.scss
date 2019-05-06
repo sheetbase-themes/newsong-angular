@@ -32,6 +32,7 @@
       padding: 1rem;
       
       .buttons {
+        @include max-width(576px);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -61,18 +62,6 @@
           color: #FFF;
         }
       }
-    }
-  }
-
-  @media (min-width: 768px) {
-    .inner {
-      padding: 6rem 1rem 5rem;
-    }
-  }
-
-  @media (min-width: 992px) {
-    .inner {
-      padding: 8rem 1rem 7rem;
     }
   }
 
