@@ -6,6 +6,8 @@
     "@angular/core": "^7.2.0",
     "@sheetbase/angular": "^1.0.0",
     "@sheetbase/client": "^1.0.0",
-    "@sheetbase/models": "^1.0.0"
+    "@sheetbase/models": "^1.0.0",
+    "howler": "^2.1.2",
+    "ngx-youtube-player": "^7.1.1"
   }
 }
